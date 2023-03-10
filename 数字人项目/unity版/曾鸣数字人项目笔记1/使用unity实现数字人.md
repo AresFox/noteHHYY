@@ -271,6 +271,8 @@ public class changeSk : MonoBehaviour
 
 **https://moecia.github.io/2021/05/05/UnityChangeOutfit-copy/**
 
+https://docs.unity3d.com/cn/2020.2/Manual/class-SkinnedMeshRenderer.html
+
 基于骨骼点替换的换装系统。
 
 为了让播放动画的时候，人物服装跟着人物一起在动，即有蒙皮，此处使用4个C#脚本实现让服装的模型的骨骼点 替换成身体模型的骨骼点，这样unity在播放它的身体动画的时候，服装也会一起做动画。
@@ -279,14 +281,18 @@ public class changeSk : MonoBehaviour
 
 这个class主要就是按照我在引言中提到的思路进行骨骼点查找，然后返回一个新的骨骼点array供替换。
 
-```
+```C#
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 进行骨骼点查找，然后返回一个新的骨骼点array供替换。
+/// </summary>
 public static class SkinnedMeshHelper
 {
     public static Transform[] GetNewBones(SkinnedMeshRenderer root, SkinnedMeshRenderer source)
     {
+        //复习lambda表达式 s => s.name   传入s传出s.name
         return root.bones
             .Where(x => source.bones.Select(s => s.name).Contains(x.name)).ToArray();
     }
@@ -297,22 +303,31 @@ public static class SkinnedMeshHelper
 
 这个class放在服装的prefab上，设定好OutfitType（Hair,Cloth,Pant,Shoes）后放在Resources/Outfit/{OutfitType}/下。文件名和**Id**保持一致。
 
-```
+```C#
 using UnityEngine;
-
+/// <summary>
+/// 位置：
+/// 这个class放在服装的prefab上，
+/// 设定好OutfitType（Hair,Cloth,Pant,Shoes）后放在Resources/Outfit/{OutfitType}/下。
+/// 文件名和**Id**保持一致。（1234...）
+/// 
+/// 代码：
+/// 获得这个预制体上的SkinnedMeshRenderer
+/// </summary>
 public class Outfit : MonoBehaviour
 {
     [SerializeField] private OutfitType outfitType;
     private SkinnedMeshRenderer skinnedMeshRenderer;
 
     public OutfitType OutfitType { get => outfitType; set => outfitType = value; }
-    public int Id { get => int.Parse(this.name); }
+    public int Id { get => int.Parse(this.name); } //获取预制体名字 1234...
     public SkinnedMeshRenderer SkinnedMeshRenderer
     {
         get
         {
             if (skinnedMeshRenderer == null)
             {
+                //获得这个预制体上的SkinnedMeshRenderer
                 skinnedMeshRenderer = this.GetComponentInChildren<SkinnedMeshRenderer>();
             }
             return skinnedMeshRenderer;
@@ -333,9 +348,13 @@ public enum OutfitType
 
 这个类用于换装前端逻辑，使用前先在人物身上放4个Slot，分别对应头，身，腿和脚。
 
-```
+```c#
 using UnityEngine;
-
+/// <summary>
+/// 这个类用于换装前端逻辑，使用前先在人物身上放4个Slot，分别对应头，身，腿和脚。
+/// 
+/// 代码：加载资源，从文件夹中读取相应资源，
+/// </summary>
 public class EquipmentManager : MonoBehaviour
 {
     [SerializeField] private Transform hairSlot;
@@ -356,7 +375,7 @@ public class EquipmentManager : MonoBehaviour
 
     public void LoadEquipment()
     {
-        ChangeOutfit(OutfitType.Hair, 1);
+        ChangeOutfit(OutfitType.Hair, 1);//hair 暂时作为装饰
         ChangeOutfit(OutfitType.Cloth, 1);
         ChangeOutfit(OutfitType.Pant, 1);
         ChangeOutfit(OutfitType.Shoes, 1);
@@ -366,6 +385,7 @@ public class EquipmentManager : MonoBehaviour
     {
         GameObject outfit = null;
         Transform target = null;
+        //outfitId = outfitId % 2+1;
         switch (outfitType)
         {
             case OutfitType.Hair:
@@ -405,9 +425,13 @@ public class EquipmentManager : MonoBehaviour
                 ShoesId = outfitId;
                 break;
         }
+        
         var outfitObj = Instantiate(outfit, target);
+        //得到服装的SkinnedMeshRenderer
         var smr = outfitObj.GetComponent<Outfit>().SkinnedMeshRenderer;
+        //去获取服装骨骼和人物骨骼相匹配的地方
         var bones = SkinnedMeshHelper.GetNewBones(avatarSkinnedMesh, smr);
+        //将服装骨骼替换为人物骨骼
         smr.bones = bones;
     }
 }
@@ -417,12 +441,14 @@ public class EquipmentManager : MonoBehaviour
 
 换装演示场景的UI控制逻辑。
 
-```
+```c#
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 换装演示场景的UI控制逻辑。
+/// </summary>
 public class ChangeOutfitController : MonoBehaviour
 {
     [SerializeField] private Button prevHair;
@@ -441,6 +467,10 @@ public class ChangeOutfitController : MonoBehaviour
     private int currPantIndex = 1;
     private int currShoesIndex = 1;
 
+    private int hairSize = 0;
+    private int clothesSize = 0;
+    private int pantsSize = 0;
+    private int shoesSize = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -454,6 +484,16 @@ public class ChangeOutfitController : MonoBehaviour
         nextPant.onClick.AddListener(() => { ChangeOutfit(OutfitType.Pant, true); });
         prevShoes.onClick.AddListener(() => { ChangeOutfit(OutfitType.Shoes, false); });
         nextShoes.onClick.AddListener(() => { ChangeOutfit(OutfitType.Shoes, true); });
+        
+        string[] dirsHair = System.IO.Directory.GetFileSystemEntries("Assets/Resources/Outfit/Hair");
+        hairSize = dirsHair.Length/2;///2应该是因为有mate文件
+        string[] dirsPants = System.IO.Directory.GetFileSystemEntries("Assets/Resources/Outfit/Pants");
+        pantsSize = dirsPants.Length / 2;
+        string[] dirsClothes = System.IO.Directory.GetFileSystemEntries("Assets/Resources/Outfit/Clothes");
+        clothesSize = dirsClothes.Length / 2;
+        string[] dirsShoes = System.IO.Directory.GetFileSystemEntries("Assets/Resources/Outfit/Shoes");
+        shoesSize = dirsShoes.Length / 2;
+        //Debug.Log($"hairSize++{hairSize}");
     }
 
     private void ChangeOutfit(OutfitType outfitType, bool isNext)
@@ -463,44 +503,44 @@ public class ChangeOutfitController : MonoBehaviour
             case OutfitType.Hair:
                 if (isNext)
                 {
-                    currHairIndex = currHairIndex < 5 ? ++currHairIndex : 1;
+                    currHairIndex = currHairIndex < hairSize ? ++currHairIndex : 1;
                 }
                 else
                 {
-                    currHairIndex = currHairIndex > 1 ? --currHairIndex : 5;
+                    currHairIndex = currHairIndex > 1 ? --currHairIndex : hairSize;
                 }
                 equipmentMgr.ChangeOutfit(outfitType, currHairIndex);
                 break;
             case OutfitType.Cloth:
                 if (isNext)
                 {
-                    currClothIndex = currClothIndex < 5 ? ++currClothIndex : 1;
+                    currClothIndex = currClothIndex < clothesSize ? ++currClothIndex : 1;
                 }
                 else
                 {
-                    currClothIndex = currClothIndex > 1 ? --currClothIndex : 5;
+                    currClothIndex = currClothIndex > 1 ? --currClothIndex : clothesSize;
                 }
                 equipmentMgr.ChangeOutfit(outfitType, currClothIndex);
                 break;
             case OutfitType.Pant:
                 if (isNext)
                 {
-                    currPantIndex = currPantIndex < 5 ? ++currPantIndex : 1;
+                    currPantIndex = currPantIndex < pantsSize ? ++currPantIndex : 1;
                 }
                 else
                 {
-                    currPantIndex = currPantIndex > 1 ? --currPantIndex : 5;
+                    currPantIndex = currPantIndex > 1 ? --currPantIndex : pantsSize;
                 }
                 equipmentMgr.ChangeOutfit(outfitType, currPantIndex);
                 break;
             case OutfitType.Shoes:
                 if (isNext)
                 {
-                    currShoesIndex = currShoesIndex < 5 ? ++currShoesIndex : 1;
+                    currShoesIndex = currShoesIndex < clothesSize ? ++currShoesIndex : 1;
                 }
                 else
                 {
-                    currShoesIndex = currShoesIndex > 1 ? --currShoesIndex : 5;
+                    currShoesIndex = currShoesIndex > 1 ? --currShoesIndex : clothesSize;
                 }
                 equipmentMgr.ChangeOutfit(outfitType, currShoesIndex);
                 break;
@@ -953,3 +993,17 @@ public class trytigitalDLL : MonoBehaviour
 3、继续尝试dll，继续改为cpython 把所有函数返回值指定一下设置一下 ，但是我们在想改的过程中是否那些众多的库也需要改
 
 4、通过本地socket，开两个端口
+
+
+
+
+
+
+
+TODO：
+
+打光问题
+
+给一个视频，可以动捕
+
+改bug，可以换多个衣服 √
