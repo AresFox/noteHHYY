@@ -1,5 +1,7 @@
 #  Leetcode  刷题总结 
 
+:ok: 这个专题刷完了
+
 # 语法：
 
 
@@ -663,7 +665,7 @@ public:
 
 
 
-# 链表
+# 链表:ok:
 
 
 
@@ -725,7 +727,7 @@ public:
             if(pr->val==val)
             {
                 p->next=pr->next;
-                delete pr;
+                delete pr;//！！！！
                 pr=p->next;
             }
             else
@@ -932,7 +934,7 @@ public:
  */
 ```
 
-
+最好弄一个虚拟头
 
 
 
@@ -1310,6 +1312,22 @@ public:
 
 
 
+为什么二者都为null的时候不会是相交链表呢，我认为是
+
+如果是相交链表
+
+1）二链表长度一致，那么当二者相同 即 第一次相交退出循环就是相交的位置
+
+2）二链表长度不一，那么第一次相交退出循环就是遍历a+相交部分+b+相交点 / 遍历b+相交部分+a+相交点  此时当二者相同的时候必定是这个相交点而不是==null
+
+不相交链表
+
+1）二链表长度一致，那么当二者==null退出
+
+2）二链表长度不一，遍历a+b/ b+a ==null退出
+
+
+
 ## [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 
 //又不会了呀我的天
@@ -1422,7 +1440,7 @@ public:
 
 
 
-#### [剑指 Offer 35. 复杂链表的复制](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
+## [剑指 Offer 35. 复杂链表的复制](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
 
 难度中等438
 
@@ -1473,7 +1491,45 @@ public:
 
 解析：
 
-方法二：拼接 + 拆分
+#### 方法1：哈希表
+
+![image-20230314191847969](Leetcode  刷题总结 大厂等我.assets/image-20230314191847969.png)
+
+![image-20230314191859495](Leetcode  刷题总结 大厂等我.assets/image-20230314191859495.png)
+
+```C++
+class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if(head == nullptr) return nullptr;
+        Node* cur = head;
+        unordered_map<Node*, Node*> map;
+        // 3. 复制各节点，并建立 “原节点 -> 新节点” 的 Map 映射
+        while(cur != nullptr) {
+            map[cur] = new Node(cur->val);
+            cur = cur->next;
+        }
+        cur = head;//！！
+        // 4. 构建新链表的 next 和 random 指向
+        while(cur != nullptr) {
+            map[cur]->next = map[cur->next];
+            map[cur]->random = map[cur->random];
+            cur = cur->next;
+        }
+        // 5. 返回新链表的头节点
+        return map[head];
+    }
+};
+
+作者：jyd
+链接：https://leetcode.cn/problems/fu-za-lian-biao-de-fu-zhi-lcof/solution/jian-zhi-offer-35-fu-za-lian-biao-de-fu-zhi-ha-xi-/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
+
+
+
+#### 方法二：拼接 + 拆分
 考虑构建 原节点 1 -> 新节点 1 -> 原节点 2 -> 新节点 2 -> …… 的拼接链表，如此便可在访问原节点的 random 指向节点的同时找到新对应新节点的 random 指向节点。
 
 算法流程：
@@ -2327,7 +2383,7 @@ public:
 
 
 
-# 字符串  :skull_and_crossbones:   :no_mouth:
+# 字符串  :skull_and_crossbones:   :no_mouth:  :ok:
 
 ## 168. Excel表列名称
 
@@ -2402,16 +2458,21 @@ public:
             columnNumber/=26;
         }
         //ans.reverse(ans.begin(),ans.end());//错误
-        reverse(ans.begin(),ans.end());//注意这个是这样写的
+        reverse(ans.begin(),ans.end());//注意这个是这样写的  要反转一下哈
         return ans;
     }
 };
 ```
 
 官方题解:
+
+数学方法理解：
+
 链接：https://leetcode-cn.com/problems/excel-sheet-column-title/solution/excelbiao-lie-ming-cheng-by-leetcode-sol-hgj4/
 
+从 1 开始的 26 进制转换题：
 
+https://leetcode.cn/problems/excel-sheet-column-title/solution/gong-shui-san-xie-cong-1-kai-shi-de-26-j-g2ur/
 
 ## [541. 反转字符串 II](https://leetcode-cn.com/problems/reverse-string-ii/)
 
@@ -2531,6 +2592,8 @@ public:
 
 ## KMP 28. 实现 strStr()  :skull_and_crossbones:   :no_mouth:
 
+[28. 找出字符串中第一个匹配项的下标 - 力扣（LeetCode）](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
 :heart:
 
 实现 strStr() 函数。
@@ -2586,8 +2649,6 @@ KMP的经典思想就是:**当出现字符串不匹配时，可以记录一部�
 说到KMP，先说一下KMP这个名字是怎么来的，为什么叫做KMP呢。
 
 因为是由这三位学者发明的：Knuth，Morris和Pratt，所以取了三位学者名字的首字母。所以叫做KMP
-
-
 
 
 
@@ -2760,6 +2821,8 @@ next数组就可以是前缀表，但是很多实现都是把前缀表统一减�
 
 为了和力扣题目28.实现strStr保持一致，方便大家理解，以下文章统称haystack为文本串, needle为模式串。
 
+（m Needle in a Haystack大海捞针?)
+
 都知道使用KMP算法，一定要构造next数组。
 
 ### 构造next数组
@@ -2803,7 +2866,7 @@ next[i] 表示 i（包括i）之前最长相等的前后缀长度（其实就是
 
 所以遍历模式串s的循环下标i 要从 1开始，代码如下：
 
-```
+```C++
 for(int i = 1; i < s.size(); i++) {
 ```
 
@@ -2817,7 +2880,7 @@ next[j]就是记录着j（包括j）之前的子串的相同前后缀的长度�
 
 所以，处理前后缀不相同的情况代码如下：
 
-```
+```C++
 while (j >= 0 && s[i] != s[j + 1]) { // 前后缀不相同了
     j = next[j]; // 向前回退
 }
@@ -2829,7 +2892,7 @@ while (j >= 0 && s[i] != s[j + 1]) { // 前后缀不相同了
 
 代码如下：
 
-```
+```C++
 if (s[i] == s[j + 1]) { // 找到相同的前后缀
     j++;
 }
@@ -2931,9 +2994,9 @@ for (int i = 0; i < s.size(); i++) 
 }
 ```
 
-此时所有逻辑的代码都已经写出来了，力扣 28.实现strStr 题目的整体代码如下：
+此时所有逻辑的代码都已经写出来了，力扣 28.实现strStr() 题目的整体代码如下：
 
-### 前缀表统一减一 C++代码实现
+### 前缀表统一减一 C++代码实现（暂时以这个为准）
 
 ```C++
 class Solution {
@@ -2942,7 +3005,7 @@ public:
         int j = -1;
         next[0] = j;
         for(int i = 1; i < s.size(); i++) { // 注意i从1开始
-            while (j >= 0 && s[i] != s[j + 1]) { // 前后缀不相同了
+            while (j >= 0 && s[i] != s[j + 1]) { // 前后缀不相同了 //+1！！！！因为我们的next数组中会从-1开始给 没有相同前后缀的就是-1 所以赋值用j 移动的下标用的是j+1
                 j = next[j]; // 向前回退
             }
             if (s[i] == s[j + 1]) { // 找到相同的前后缀
@@ -3196,7 +3259,47 @@ next[len - 1] = 7，next[len - 1] + 1 = 8，8就是此时字符串asdfasdfasdf�
 
 (len - (next[len - 1] + 1)) 也就是： 12(字符串的长度) - 8(最长公共前后缀的长度) = 4， 4正好可以被 12(字符串的长度) 整除，所以说明有重复的子字符串（asdf）。
 
+-1:
 
+```C++
+class Solution {
+public:
+    void getNext (int* next, const string& s){
+        next[0] = -1;
+        int j = -1;
+        for(int i = 1;i < s.size(); i++){
+            while(j >= 0 && s[i] != s[j + 1]) {
+                j = next[j];
+            }
+            if(s[i] == s[j + 1]) {
+                j++;
+            }
+            next[i] = j;
+        }
+    }
+    bool repeatedSubstringPattern (string s) {
+        if (s.size() == 0) {
+            return false;
+        }
+        int next[s.size()];
+        getNext(next, s);
+        int len = s.size();
+        if (next[len - 1] != -1 && len % (len - (next[len - 1] + 1)) == 0) {
+            return true;
+        }
+        return false;
+    }
+};
+
+作者：carlsun-2
+链接：https://leetcode.cn/problems/repeated-substring-pattern/solution/by-carlsun-2-g3iz/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
+
+
+
+不减：
 
 
 ```C++
@@ -3240,7 +3343,7 @@ public:
 
 
 
-### [剑指 Offer II 032. 有效的变位词](https://leetcode-cn.com/problems/dKk3P7/)
+## [剑指 Offer II 032. 有效的变位词](https://leetcode-cn.com/problems/dKk3P7/)
 
 难度简单15
 
@@ -3303,9 +3406,41 @@ public:
  };
  ```
 
+##23/3/16##
+
+```C++
+#include <string.h>
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int a[30]={0};
+        if(s.size()!=t.size())return false;
+        //if(strcmp(s,t)==0)return false; //不可比较string，比较的是const char* str1
+        if(s==t)return false;//比较2个string相等
+        for(int i=0;i<s.size();i++)
+        {
+            a[s[i]-'a']++;
+        }
+
+        for(int i=0;i<t.size();i++)
+        {
+            if(a[t[i]-'a']<=0)
+            {
+                return false;
+            }
+            else
+            {
+                a[t[i]-'a']--;
+            }
+        }
+        return true;
+    }
+};
+```
 
 
-### [434. 字符串中的单词数](https://leetcode-cn.com/problems/number-of-segments-in-a-string/)
+
+## [434. 字符串中的单词数](https://leetcode-cn.com/problems/number-of-segments-in-a-string/)
 
 难度简单169
 
@@ -3360,7 +3495,36 @@ public:
 
 
 
-# SQL
+##23/3/16##
+
+只要出现“不是空格+空格”，就是一个单词，同时最后一个字符不是空格，则也算再加一个单词
+
+```C++
+class Solution {
+public:
+    int countSegments(string s) {
+        int res=0;
+        for(int i=0;i<s.size();i++)
+        {
+            //要出现“不是空格+空格”，就是一个单词，
+            if(i>0)
+            {
+                if(s[i]==' '&&s[i-1]!=' ')
+                {
+                    res++;
+                }
+            }
+            //同时最后一个字符不是空格，则也算再加一个单词
+            if(i==s.size()-1&&s[i]!=' ')res++;
+        }
+        return res;
+    }
+};
+```
+
+
+
+# SQL :ok:
 
 ## [175. 组合两个表](https://leetcode-cn.com/problems/combine-two-tables/)
 
@@ -3571,7 +3735,7 @@ int main()
     scanf("%d",&n);
     for(int i=0,j=0;i<n;i++)
     {
-        scanf("%d",&a[i]);
+        scanf("%d",&a[i]);//一定是需要两个数组 一个存输入的串，一个记录flag用
         s[a[i]]++;
         while(j<i&&s[a[i]]>1)
         {
@@ -3690,6 +3854,8 @@ public:
 ![image-20220315215112634](# Leetcode  刷题总结 大厂等我.assets/image-20220315215112634.png)
 
 思路
+
+（可以利用升序排列）
 
 首先写出暴力的 双层循环 然后寻找单调性 
 
@@ -6358,7 +6524,7 @@ int main()
 
 
 
-# 二叉树
+# 二叉树:ok:
 
 ### 二叉树注意
 #### 二叉树的定义
@@ -9152,7 +9318,7 @@ public:
         this->preorder = preorder;
         for(int i = 0;i < inorder.size();i++) 
             dict[inorder[i]] = i;  //提前存储中序序列到哈希表中,节省查找时间
-        TreeNode* root = recurive(0, 0, inorder.size()-1);
+        TreeNode* root = recurive(0, 0, inorder.size()-1);//**-1
         return root;
     }
 private:
@@ -9170,7 +9336,7 @@ public:
         {
             dict[inorder[i]]=i;//输入数字 得出在中序的索引
         }
-        return buildFunc(0,0,inorder.size()-1);//-1
+        return buildFunc(0,0,inorder.size()-1);//-1！！！！！-1
     }
     TreeNode* buildFunc(int preRoot,int inl,int inr)
     {
@@ -9189,7 +9355,7 @@ private:
 
 
 
-# 回溯算法
+# 回溯算法:ok:
 
 <img src='https://img-blog.csdnimg.cn/20210219192050666.png' width=600 alt='回溯算法大纲'> </img>
 
@@ -12011,42 +12177,53 @@ vector<vector<string>> result;
 // n 为输入的棋盘大小
 // row 是当前递归到棋牌的第几行了
 void backtracking(int n, int row, vector<string>& chessboard) {
-    if (row == n) {
+    if (row == n) 
+    {
         result.push_back(chessboard);
         return;
     }
-    for (int col = 0; col < n; col++) {
-        if (isValid(row, col, chessboard, n)) { // 验证合法就可以放
+    for (int col = 0; col < n; col++) 
+    {
+        if (isValid(row, col, chessboard, n)) 
+        { // 验证合法就可以放
             chessboard[row][col] = 'Q'; // 放置皇后
             backtracking(n, row + 1, chessboard);
             chessboard[row][col] = '.'; // 回溯，撤销皇后
         }
     }
 }
-bool isValid(int row, int col, vector<string>& chessboard, int n) {
+bool isValid(int row, int col, vector<string>& chessboard, int n) 
+{
     int count = 0;
     // 检查列
-    for (int i = 0; i < row; i++) { // 这是一个剪枝
-        if (chessboard[i][col] == 'Q') {
+    for (int i = 0; i < row; i++) 
+    { // 这是一个剪枝
+        if (chessboard[i][col] == 'Q')
+        {
             return false;
         }
     }
     // 检查 45度角是否有皇后
-    for (int i = row - 1, j = col - 1; i >=0 && j >= 0; i--, j--) {
-        if (chessboard[i][j] == 'Q') {
+    for (int i = row - 1, j = col - 1; i >=0 && j >= 0; i--, j--)
+    {
+        if (chessboard[i][j] == 'Q')
+        {
             return false;
         }
     }
     // 检查 135度角是否有皇后
-    for(int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {// col + 1;注意
-        if (chessboard[i][j] == 'Q') {
+    for(int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++)
+    {// col + 1;注意
+        if (chessboard[i][j] == 'Q')
+        {
             return false;
         }
     }
     return true;
 }
 public:
-    vector<vector<string>> solveNQueens(int n) {
+    vector<vector<string>> solveNQueens(int n)
+    {
         result.clear();
         std::vector<std::string> chessboard(n, std::string(n, '.'));
         backtracking(n, 0, chessboard);
@@ -12164,6 +12341,8 @@ public:
 
 ## 正则表达式匹配
 
+https://leetcode.cn/problems/regular-expression-matching/
+
 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
 
 '.' 匹配任意单个字符
@@ -12173,6 +12352,7 @@ public:
 
 示例 1：
 
+```C++
 输入：s = "aa", p = "a"
 输出：false
 解释："a" 无法匹配 "aa" 整个字符串。
@@ -12186,6 +12366,9 @@ public:
 输入：s = "ab", p = ".*"
 输出：true
 解释：".*" 表示可匹配零个或多个（'*'）任意字符（'.'）。
+```
+
+
 
 
 提示：
@@ -12198,11 +12381,81 @@ p 只包含从 a-z 的小写字母，以及字符 . 和 *。
 
 
 
+对于例子  输入：s = "ab", p = ".*"  输出：true 的理解
+
+```C++
+".*" 表示可匹配零个或多个（'*'）任意字符（'.'）。
+   规定是“.*”匹配任意字符串
+    我的理解是 *表示匹配一个或者多个'.'
+   也就是".*"可以是"........."/"..."/"......................"所以他可以是任意字符
+```
+
+新方法：
+
+来看这下面这个讲解！！！
+
+https://leetcode.cn/problems/regular-expression-matching/solution/shou-hui-tu-jie-wo-tai-nan-liao-by-hyj8/
+
+[力扣 (leetcode.cn)](https://leetcode.cn/problems/regular-expression-matching/solution/shou-hui-tu-jie-wo-tai-nan-liao-by-hyj8/)
+
+```C++
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int lens=s.size();
+        int lenp=p.size();
+        //vector<vector<bool>> dp(lens+1,vector<bool>(lenp+1,false));//因为包含了空字串的情况
+        bool dp[30][30]={false};
+        //初始化 
+        dp[0][0]=true;//两个空字串
+        for(int j=1;j<lenp+1;j++)//找出s为空 但p因为* 为空的情况
+        {
+            if(p[j]=='*')//a*b*c*与空 可以匹配
+            {
+                dp[0][j+1]=dp[0][j-1];
+            }
+        }
+        //更新
+        for(int i=1;i<lens+1;i++)
+        {
+            for(int j=1;j<lenp+1;j++)  //**i/j取到lenp，因为可以看到下面的s/p都是最多用的i-1/j-1
+            {
+                if(s[i-1]==p[j-1]||p[j-1]=='.')//情况1：符合，直接更新  
+                {
+                    dp[i][j]=dp[i-1][j-1];
+                }
+                else if(p[j-1]=='*')//情况2：考虑*的情况
+                {
+                    if(s[i-1]==p[j-2]||p[j-2]=='.')//s[i-1]！！ a vs a*
+                    {
+                        dp[i][j]=dp[i][j-2]||dp[i-1][j-2]||dp[i-1][j];//分别是  重复0次；重复一次；重复两次及以上！！！
+                    }
+                    else//s[i-1] p[j-2]不匹配  *需要重复0次
+                    {
+                        dp[i][j]=dp[i][j-2];
+                    }
+                }
+            }
+        }
+        return dp[lens][lenp];
+    }
+};
+```
+
+```markdown
+dp[0][0]表示空串，dp[1][1]表示s[0]和p[0]是否匹配
+因为必须有表示空串的
+```
+
+
+
+老方法：
+
 （可以有多个解放）以下是视频
 
 https://www.bilibili.com/video/BV13441117i4?p=1
 
-### 递归回溯方法
+### 递归回溯方法（力扣超时）
 
 ![image-20220319180514620](# Leetcode  刷题总结 大厂等我.assets/image-20220319180514620.png)
 
@@ -12221,7 +12474,11 @@ public:
         if(p.size()>=2&&p[1]=='*')
         {
             //return static_cast<bool>((first_match&&isMatch(s.substr(1),p))||(s,p.substr(2)));
-            return (bool)((first_match&&isMatch(s.substr(1),p))||isMatch(s,p.substr(2)));//要先first_match
+            return (bool)
+            (
+                (firstMatch && isMatch(s.substr(1), p)) 
+                || isMatch(s, p.substr(2))
+            );//要先first_match
         }
 
         else
@@ -12279,7 +12536,7 @@ https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/jian-
 
 
 
-# 深度优先搜索DFS
+# 深度优先搜索DFS:ok:
 
 ## [剑指 Offer 13. 机器人的运动范围](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
 
@@ -13145,7 +13402,7 @@ public:
 
 
 
-# 广度优先搜索BFS
+# 广度优先搜索BFS:ok:
 
 广度优先搜索可以找到从起点到其余所有点的 **最短距离**
 
@@ -14632,7 +14889,7 @@ public:
 
 
 
-# 动态规划(1)-基础题目
+# 动态规划(1)-基础题目:ok:
 
 动规的五部曲：
 
@@ -14744,6 +15001,8 @@ public:
 * 时间复杂度：O(n)
 * 空间复杂度：O(n)
 
+不能直接递归 会超时
+
 ## [746. 使用最小花费爬楼梯](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
 
 难度简单789
@@ -14796,7 +15055,7 @@ public:
         vector<int> dp(n+1);
         dp[0]=0;
         dp[1]=0;
-        for(int i=2;i<=n;i++)
+        for(int i=2;i<=n;i++)//=
         {
             dp[i]=min(dp[i-1]+cost[i-1],dp[i-2]+cost[i-2]);
             //cout<<dp[i]<<"  i"<<i<<endl;
@@ -14806,7 +15065,7 @@ public:
 };
 ```
 
-
+注意是要上到最后一台阶 ，0-n
 
 ## 62.不同路径
 
@@ -15175,7 +15434,7 @@ public:
         {
             for (int j = 1; j < i - 1; j++) 
             {
-                dp[i] = max(dp[i], max((i - j) * j, dp[i - j] * j)); //注意一下啊 dp[i]没此次j++都会重置 会出现很多个dp[i]
+                dp[i] = max(dp[i], max((i - j) * j, dp[i - j] * j)); //注意一下啊 dp[i]每次j++都会重置 会出现很多个dp[i]
             }
         }
         return dp[n];
@@ -16945,7 +17204,7 @@ public:
 
 这也是Carl做了很多题目（包括ACM和力扣）才总结出来的规律，大家仔细体会一下哈。
 
-# 动态规划-股票问题
+# 动态规划-股票问题:ok:
 
 ==**https://leetcode-cn.com/circle/article/qiAgHn/**==
 
@@ -17126,7 +17385,7 @@ public:
     int maxProfit(vector<int>& prices) {
         int n=prices.size(),k=0;
         //vector< vector< vector<int> > > dp(n,vector<vector<int>>(3,vector<int>(2,0)));
-        int dp[100010][3][2]={0};//改用数组 快多了
+        int dp[100010][3][2]={0};//改用数组 快多了 如果没有={0}会报错
         dp[0][1][1]=-prices[0];
         dp[0][2][1]=-prices[0];//啊 手上有股票 操作了两次 怎么可能买了两次啊。。但是为了初始化
         for(int i=1;i<n;i++)
@@ -17141,6 +17400,10 @@ public:
     }
 };
 ```
+
+用 k 表示允许的最大交易次数；
+
+`// 并不考虑if(k==0)dp[i][0][1]=dp[i-1][0][1];最多允许0次交易 结果还能买到股票 不可能，所以不考虑k=0`	
 
 
 
@@ -17213,6 +17476,7 @@ public:
             }
         }
         int mymax=0;
+        //不用以下这样 直接返回dp[n-1][k][0]
         for(int l=1;l<=k;l++)//等号别忘了
         {
             if(dp[n-1][l][0]>mymax)mymax=dp[n-1][l][0];
@@ -17221,6 +17485,51 @@ public:
     }
 };
 ```
+
+##23/3/12##
+
+```C++
+class Solution {
+public:
+    int maxProfit(int k, vector<int>& prices) {
+        
+        int n=prices.size();
+        if(k>=n/2)return maxProfit2(prices);//相当于可以进行无限次交易，优化掉k
+        int dp[1010][110][2]={0};
+        for(int ki=1;ki<=k;ki++)
+        {
+            dp[0][ki][1]=-prices[0];
+        }
+        for(int i=1;i<n;i++)
+        {
+            for(int ki=1;ki<=k;ki++)
+            {
+                dp[i][ki][0]=max(dp[i-1][ki][0],dp[i-1][ki][1]+prices[i]);
+                dp[i][ki][1]=max(dp[i-1][ki][1],dp[i-1][ki-1][0]-prices[i]);
+            }
+        }
+
+        return dp[n-1][k][0];
+    }
+    int maxProfit2(vector<int>& prices) {
+        
+        int n=prices.size();
+        int dp[1010][2]={0};   
+        dp[0][1]=-prices[0];
+        for(int i=1;i<n;i++)
+        {
+            dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i]);
+            dp[i][1]=max(dp[i-1][1],dp[i-1][0]-prices[i]);
+        }
+
+        return dp[n-1][0];
+    }
+};
+```
+
+
+
+
 
 ## [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
 

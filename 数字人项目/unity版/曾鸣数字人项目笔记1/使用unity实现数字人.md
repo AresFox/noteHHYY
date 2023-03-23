@@ -996,7 +996,220 @@ public class trytigitalDLL : MonoBehaviour
 
 
 
+### 人体驱动的任务
 
+#### 相关知识学习
+
+smpl学习：
+
+https://zhuanlan.zhihu.com/p/256358005
+
+#### json格式适配unity + 读取并解析json
+
+
+
+###### json格式
+
+https://blog.csdn.net/yanqing_happy/article/details/98871448
+
+
+
+学长提供了一个json：
+
+猜测应该说的是每一帧的动作？
+
+![image-20230317174544636](使用unity实现数字人.assets/image-20230317174544636.png)
+
+![image-20230317175108355](使用unity实现数字人.assets/image-20230317175108355.png)
+
+因此pose位置一共有72个数字，每个
+
+计算得出![image-20230317175131959](使用unity实现数字人.assets/image-20230317175131959.png)
+
+同时根据查找的资料确定
+
+一组姿态参数有着24×3维度的数字，去描述某个时刻人体的动作姿态，其中的24表示的是24个定义好的人体关节点，其中的3并不是如同识别问题里面定义的(x,y,z)空间位置坐标（location），而是指的是该节点针对于其父节点的旋转角度的轴角式表达(axis-angle representation)（对于这24个节点，作者定义了一组关节点树）
+
+
+
+![image-20230317175335782](使用unity实现数字人.assets/image-20230317175335782.png)
+
+
+
+遇到问题与解决：
+
+https://blog.csdn.net/chasinghope/article/details/103710073
+
+
+
+问题2：转义符导致unity无法识别
+
+通过网站去除转义：https://www.sojson.com/yasuo.html
+
+然后在网站https://www.json.cn/json/jsononline.html看到这个json结构
+
+![image-20230317193009254](使用unity实现数字人.assets/image-20230317193009254.png)
+
+
+
+```C#
+string str=ReadData();
+        Debug.Log("smpl"+str);
+        
+        string jsonData = ReadData();
+        //Data m_PersonData = JsonUtility.FromJson<Data>("{\"mframe\":" + jsonData + "}");
+        Data m_PersonData = JsonUtility.FromJson<Data>(jsonData);
+           //
+        foreach (mFrame item in m_PersonData.mframe)
+        {
+            Debug.Log("frame_id"+item.frame_id);
+            Debug.Log("pose0"+item.pose[0]);
+        }
+```
+
+
+
+对照一下我的代码是否获取到了：
+
+![image-20230317193505879](使用unity实现数字人.assets/image-20230317193505879.png)
+
+可以看到，已经获取到了这个pose的值
+
+```C#
+Debug.Log("frameSize"+m_PersonData.mframe.Length);
+Debug.Log("poseSize"+m_PersonData.mframe[0].pose.Length);
+Debug.Log("betasSize"+m_PersonData.mframe[0].betas.Length);
+```
+
+![image-20230317193853990](使用unity实现数字人.assets/image-20230317193853990.png)
+
+
+
+#### 驱动人体运动
+
+学长让导入一个网上的模型，我暂时使用这个网上开源免费模型进行试验
+
+使用的网上模型在unity中：手动对比可以得到对应其index
+
+![image-20230317194553504](使用unity实现数字人.assets/image-20230317194553504.png)<img src="使用unity实现数字人.assets/image-20230317194813241.png" alt="image-20230317194813241" style="zoom:50%;" /><img src="使用unity实现数字人.assets/v2-a7fea32feb040a45da750d2d4d19ed3b_720w.webp" alt="img" style="zoom: 50%;" />
+
+
+
+hips-0
+
+spine-3
+
+leftleg 1 leftknee4
+
+rightleg 2 rightknee5
+
+
+
+0-chest
+
+13-leftshoulder （listid12）
+
+14-rightshoulder（listid13）
+
+6-chest （listid14）
+
+9-chest（listid14）
+
+![image-20230321133749031](使用unity实现数字人.assets/image-20230321133749031.png)
+
+遇到问题：
+
+transform是作为引用传入的
+
+Unity中的transform、gameobject是类类型，所以它们是引用。
+
+所以直接弄一个四元数数组存放初始的旋转角
+
+不过好像并不是我所想的直接旋转，采用的是罗德里格斯旋转公式计算
+
+
+
+![image-20230319211424834](使用unity实现数字人.assets/image-20230319211424834.png)
+
+![image-20230319211437060](使用unity实现数字人.assets/image-20230319211437060.png)
+
+![image-20230319214840148](使用unity实现数字人.assets/image-20230319214840148.png)
+
+
+
+![image-20230319212304520](使用unity实现数字人.assets/image-20230319212304520.png)
+
+![image-20230319215116328](使用unity实现数字人.assets/image-20230319215116328.png)
+
+
+
+
+
+
+
+![image-20230320101900819](使用unity实现数字人.assets/image-20230320101900819.png)
+
+![image-20230320102104722](使用unity实现数字人.assets/image-20230320102104722.png)
+
+
+
+![image-20230320101958699](使用unity实现数字人.assets/image-20230320101958699.png)
+
+![image-20230320102021215](使用unity实现数字人.assets/image-20230320102021215.png)
+
+
+
+<img src="使用unity实现数字人.assets/image-20230321113316969.png" alt="image-20230321113316969" style="zoom:50%;" />
+
+如果做出最后坐下的造型
+
+应该是
+
+左腿 90 0 0
+
+实际上
+
+![image-20230321113027886](使用unity实现数字人.assets/image-20230321113027886.png)
+
+实际表现错误 比较合理的应当是 56 ，。。 ，。。
+
+
+
+膝盖： 90 0 0
+
+实际表现没错
+
+![image-20230321112020971](使用unity实现数字人.assets/image-20230321112020971.png)
+
+
+
+debug一下看看一些动作是否有
+
+4500帧
+
+![image-20230321121631790](使用unity实现数字人.assets/image-20230321121631790.png)
+
+![image-20230321121602957](使用unity实现数字人.assets/image-20230321121602957.png)
+
+可以看到 确实做了一样的动作
+
+
+
+最后的帧
+
+<img src="使用unity实现数字人.assets/image-20230321121728668.png" alt="image-20230321121728668" style="zoom:50%;" />![image-20230321121736898](使用unity实现数字人.assets/image-20230321121736898.png)
+
+也有坐下的动作
+
+
+
+动了这几个关节<img src="使用unity实现数字人.assets/image-20230321123128543.png" alt="image-20230321123128543" style="zoom:50%;" />
+
+根结点的动会一直进行很怪的旋转，我就暂时没动，但动腿的这四个骨头看着像是这么回事
+
+
+
+gif目前是0.1f播放每100帧的那个动作
 
 
 
@@ -1007,3 +1220,4 @@ TODO：
 给一个视频，可以动捕
 
 改bug，可以换多个衣服 √
+
