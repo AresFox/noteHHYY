@@ -1,6 +1,18 @@
 #  Leetcode  刷题总结 
 
+
+
+[TOC]
+
+## 标志的意思
+
 :ok: 这个专题刷完了
+
+:whale2: 做的时间过长【230902开始】
+
+:whale: 做不出来【230902开始】
+
+
 
 # 语法：
 
@@ -8,15 +20,35 @@
 
 一些注意点
 
-表示整数最大值
+
+
+表示**整数最大值**
 
 ```C++
 INT_MAX;	
 ```
 
-反转vector
+
+
+**反转**vector
 
 `reverse(v.begin(),v.end());`
+
+
+
+#### 容器
+
+##### unordered_map
+
+unordered_map::count()是C++中的内置方法，用于通过给定 key 对unordered_map中存在的元素数量进行计数。
+
+**注意**：由于unordered_map不允许存储具有重复键的元素，因此count()函数本质上检查unordered_map中是否存在具有给定键的元素。
+
+`eg: umap.count(1)`
+
+##### unordered_set
+
+`unordered_set<int> ` 的插入语法：`insert`
 
 
 
@@ -61,6 +93,8 @@ int main(){
 
 `string str=....;path+=str;`
 
+
+
 ##### 求子串
 
 `s.substr(start,i-start+1)`
@@ -73,7 +107,59 @@ https://blog.51cto.com/xiaohaiwa/5379685
 
 
 
-# 数组 :no_mouth:
+##### char->string
+
+在 C++ 中将 char 转换为字符串有以下几种方法：
+
+1. 使用 string 类型的构造函数：可以使用 string 的构造函数将单个字符转换为字符串，如下所示：
+
+   ```c++
+   char c = 'a';
+   string s(1, c); // 将单个字符 c 转换为字符串 s
+   ```
+
+2. 使用 stringstream 类：可以使用 stringstream 类中的 << 运算符将单个字符插入到 stringstream 中，并使用 str() 方法将其转换为字符串，如下所示：
+
+   ```c++
+   char c = 'a';
+   stringstream ss;
+   ss << c;
+   string s = ss.str(); // 将单个字符 c 转换为字符串 s
+   ```
+
+3. 使用 sprintf 函数：可以使用 sprintf 函数将单个字符格式化为字符串，如下所示：
+
+   ```c++
+   char c = 'a';
+   char s[2];
+   sprintf(s, "%c", c); // 将单个字符 c 转换为字符串 s
+   ```
+
+注意：以上方法都是将单个字符转换为字符串。如果要将一个包含多个字符的 char 数组或指针转换为字符串，则可以直接将其作为参数传递给 string 的构造函数或 stringstream 的 << 运算符。
+
+
+
+##### string->int
+
+<u>将string 转化为数字</u> 
+
+<u>首先转为char*     采用  str.c_str（可能还得用const char*来接收，为什么是char * 呢，是因为这个str应当是转为一串char 如果想要第一个char的话就是[0]来取）</u>
+
+<u>接下来转化为数字   采用  atoi()</u>    
+
+<u>即   atoi(str.c_str() )</u>
+
+```C++
+string str=*iter;//*iter="LALALA"
+const char* temps = str.c_str();
+char temp=temps[0];//'L'
+```
+
+ [(63条消息) C++中如何将string类型转化成char类型_LintaoD的博客-CSDN博客_string类型转化为char](https://blog.csdn.net/LintaoD/article/details/77893349)
+
+
+
+# 数组 :no_mouth: （未）
 
 ## [59. 螺旋矩阵 II](https://leetcode-cn.com/problems/spiral-matrix-ii/)
 
@@ -150,7 +236,7 @@ public:
 
 
 
-## 209.长度最小的子数组 :no_mouth:
+## 209.长度最小的子数组 :no_mouth: :whale2:
 
 :heart:
 
@@ -161,6 +247,8 @@ public:
 示例：
 
 输入：s = 7, nums = [2,3,1,2,4,3] 输出：2 解释：子数组 [4,3] 是该条件下的长度最小的子数组。
+
+
 
 ### 暴力解法
 
@@ -203,7 +291,55 @@ public:
 };
 ```
 
+
+
 ### 滑动窗口
+
+>**230902** 滑动窗口出现问题
+>
+>不要再左右指针都写while了 ，很容易错  应该是
+>
+>最外层是右指针走，每走一步，
+>
+>{
+>
+>​		都看看左指针是否>=target，如果是，while左指针走，直到不满足>=target
+>
+>}
+
+0902:
+
+```C++
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int l = 0, r = 0;
+        int sum = 0;
+        int n=nums.size();
+        int minLen = INT_MAX;
+        
+        while(r<n)
+        {
+            sum+=nums[r];
+            while(sum>=target)
+            {
+                minLen=min(minLen,r-l+1);
+                sum-=nums[l];
+                l++;
+            }
+            r++;
+        }
+
+        if(minLen==INT_MAX)return 0;
+        return minLen;
+    }
+};
+
+```
+
+
+
+
 
 接下来就开始介绍数组操作中另一个重要的方法：**滑动窗口**。
 
@@ -234,6 +370,14 @@ public:
 [![leetcode_209](https://camo.githubusercontent.com/65f993572b894dfcfbeac11430be5d559ad2f6193fe3e7d439718569b2485fe3/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303231303331323136303434313934322e706e67)](https://camo.githubusercontent.com/65f993572b894dfcfbeac11430be5d559ad2f6193fe3e7d439718569b2485fe3/68747470733a2f2f696d672d626c6f672e6373646e696d672e636e2f32303231303331323136303434313934322e706e67)
 
 可以发现**滑动窗口的精妙之处在于根据当前子序列和大小的情况，不断调节子序列的起始位置。从而将O(n^2)的暴力解法降为O(n)。**
+
+
+
+230902
+
+
+
+
 
 C++代码如下： me
 
@@ -1623,7 +1767,7 @@ public:
 
 
 
-# 哈希表
+# 哈希表 :ok:
 
 ## 1002. 查找常用字符
 
@@ -1754,9 +1898,18 @@ public:
 };
 ```
 
+！！！！ **string s(1, i + 'a'); // char -> string**
+
+1. 使用 string 类型的构造函数：可以使用 string 的构造函数将单个字符转换为字符串，如下所示：
+
+   ```c++
+   复制代码char c = 'a';
+   string s(1, c); // 将单个字符 c 转换为字符串 s
+   ```
 
 
-## 1002. 查找常用字符
+
+## 1002. 查找常用字符(和上一题重复)
 
 https://leetcode-cn.com/problems/find-common-characters/
 
@@ -2130,6 +2283,8 @@ for(要遍历的数据类型 遍历变量 ： 遍历对象)
 
 
 
+我们直接用1000位的桶排数组也行，用空间换时间，但是如果这道题目没有限制数值的大小，就无法使用数组来做哈希表了。
+
 ## 第202题. 快乐数
 
 https://leetcode-cn.com/problems/happy-number/
@@ -2302,9 +2457,7 @@ public:
 
 
 
-
-
-## [454. 四数相加 II](https://leetcode-cn.com/problems/4sum-ii/)
+## [454. 四数相加 II ](https://leetcode-cn.com/problems/4sum-ii/):no_mouth:
 
 给定四个包含整数的数组列表 A , B , C , D ,计算有多少个元组 (i, j, k, l) ，使得 A[i] + B[j] + C[k] + D[l] = 0。
 
@@ -2328,6 +2481,20 @@ D = [ 0, 2]
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/4sum-ii
+
+
+
+方法一：分组 + 哈希表
+思路与算法
+
+![image-20230512185757229](Leetcode  刷题总结 大厂等我.assets/image-20230512185757229.png)
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/4sum-ii/solution/si-shu-xiang-jia-ii-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
 
 ```c++
 class Solution {
@@ -2359,7 +2526,7 @@ public:
 };
 ```
 
-
+![image-20230512185835675](Leetcode  刷题总结 大厂等我.assets/image-20230512185835675.png)
 
 
 
@@ -2377,7 +2544,7 @@ public:
 
 本题和[242.有效的字母异位词](https://mp.weixin.qq.com/s/ffS8jaVFNUWyfn_8T31IdA)很像，[242.有效的字母异位词](https://mp.weixin.qq.com/s/ffS8jaVFNUWyfn_8T31IdA)是求 字符串a 和 字符串b 是否可以相互组成，在[383.赎金信](https://mp.weixin.qq.com/s/qAXqv--UERmiJNNpuphOUQ)中是求字符串a能否组成字符串b，而不用管字符串b 能不能组成字符串a。
 
-一些同学可能想，用数组干啥，都用map不就完事了。
+一些同学可能想，用数组干啥，都用map不就完事了。ookk
 
 **上面两道题目用map确实可以，但使用map的空间消耗要比数组大一些，因为map要维护红黑树或者符号表，而且还要做哈希函数的运算。所以数组更加简单直接有效！**
 
@@ -3676,7 +3843,7 @@ on Person.PersonId = Address.PersonId;
 
 
 
-# 双指针 :no_mouth:
+# 双指针 :no_mouth: :ok:
 
 模板
 
@@ -3953,9 +4120,35 @@ public:
 
 
 
+0508
+
+```C++
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int left=1;//左边的用于一个个填空。
+        int right=1;//去寻找下一个数字
+        int res=1;//至少有一个数字
+
+        for(;right<nums.size();right++)
+        {
+            if(nums[right]!=nums[right-1])
+            {
+                nums[left]=nums[right];
+                left++;
+            }
+            
+        }
+        return left;
+    }
+};
+```
+
+
+
 ## 209.长度最小的子数组
 
-/*****数组里面耶放了这题了
+/*****数组里面也放了这题了
 
 题目链接： https://leetcode-cn.com/problems/minimum-size-subarray-sum/
 
@@ -4303,6 +4496,30 @@ public:
 
 
 
+更简洁的：
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        vector<vector<int>> res;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(i>0&&nums[i]==nums[i-1])continue;
+            for(int j=i+1,k=nums.size()-1;j<k;j++)
+            {
+                if(j>i+1&&nums[j]==nums[j-1])continue;
+                while(j<k-1&&nums[i]+nums[j]+nums[k-1]>=0)k--;
+                if(nums[i]+nums[j]+nums[k]==0)
+                    res.push_back({nums[i],nums[j],nums[k]});
+            }
+        }
+        return res;
+    }
+};
+```
+
 
 
 ## 第18题. 四数之和
@@ -4461,19 +4678,43 @@ public:
 };
 ```
 
+（以上这个现在可能过不了了 得longlong）
 
 
 
+23/05/10
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+         vector<vector<int>> res;
+        sort(nums.begin(),nums.end());
+        long long ta=target;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(i>0&&nums[i]==nums[i-1])continue;
+            for(int j=i+1;j<nums.size();j++)
+            {
+                if(j>i+1&&nums[j]==nums[j-1])continue;
+                
+                for(int l=j+1,r=nums.size()-1;l<r&&r<nums.size();l++)
+                {
+                    if(l>j+1&&nums[l]==nums[l-1])continue;
+                    while(l<r&&(nums[i]+nums[j]>ta-nums[l]-nums[r]))r--;
+                    if(l<r&&nums[i]+nums[j]==ta-nums[l]-nums[r])
+                        res.push_back({nums[i],nums[j],nums[l],nums[r]});
+                }
+            }
+        }
+        return res;
+    }
+};
+```
 
 
 
-abc dfg     rfg sgf     dg 14 3
-
-len=8
-
-len=2
-
-## [611. 有效三角形的个数](https://leetcode-cn.com/problems/valid-triangle-number/)
+## [611. 有效三角形的个数](https://leetcode-cn.com/problems/valid-triangle-number/) :no_mouth: :angry:
 
 难度中等354收藏分享切换为英文接收动态反馈
 
@@ -4559,7 +4800,7 @@ public:
         for(int i=0;i<n;i++)
         {
             k=i+1;
-            for(int j=i+1;j<n;j++)//k要在j后面 
+            for(int j=i+1;j<n;j++)
             {
                 while(k+1<n&&nums[k+1]<nums[i]+nums[j]) k++;//注意k+1<n nums[k+1]
 
@@ -4578,6 +4819,36 @@ public:
 ```
 
 ![image-20220312171813853](# Leetcode  刷题总结 大厂等我.assets/image-20220312171813853.png)
+
+惯用k写法
+
+```C++
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        int sum=0,k;
+        sort(nums.begin(),nums.end());//！！！一定要排序
+        for(int i=0;i<nums.size();i++)
+        {
+            k=i;//k可能在j前面？（我当时说的什么p话 不用管
+            for(int j=i+1;j<nums.size();j++)
+            {
+                while(k<nums.size()&&nums[k]<(nums[i]+nums[j]))k++;
+                if(k-1-j>0)
+                {
+                    sum+=(k-1-j);//因为上面k++溢出一个
+                    //cout<<nums[i]<<" "<<nums[j]<<" "<<nums[k]<<endl;
+                }
+            }
+        }
+        return sum;
+    }
+};
+```
+
+**如果将k在j中重置，如在` for(int j=i+1;j<nums.size();j++)`中设置`k=j+1`之类的，会超时，N^3^复杂度，而这里，随着j增大，k也不会减小（不会比上一个遍历j时的更小，因此我们这里k无需重置，跟随上一个j的k往下走即可。这样的话是N^2^**
+
+
 
 ## [剑指 Offer 57. 和为s的两个数字](https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/)
 
@@ -4628,25 +4899,31 @@ package test;
 
 import java.util.Arrays;
 
-public class FindMax {
-    public static void main(String[] args) {
+public class FindMax 
+{
+    public static void main(String[] args) 
+    {
         int[] a = new int[] { 9, 20, 3, 16, 6, 5, 7, 1 };
         System.out.println("a[" + a.length + "]=" + Arrays.toString(a));
         System.out.println("find max of a[i]-a[j],i<j : " + findMax(a));
     }
 
-    public static int findMax(int[] a) {
+    public static int findMax(int[] a) 
+    {
         // 初始化为最小可能的int值
         int max = Integer.MIN_VALUE;
         // a[i]右边元素中的最小值
         int minRight = a[a.length - 1];
         int tempMax;
-        for (int i = a.length - 2; i >= 0; i--) {
+        for (int i = a.length - 2; i >= 0; i--) 
+        {
             tempMax = a[i] - minRight;
-            if (a[i] < minRight) {
+            if (a[i] < minRight) 
+            {
                 minRight = a[i];
             }
-            if (tempMax > max) {
+            if (tempMax > max) 
+            {
                 max = tempMax;
             }
         }
@@ -4661,7 +4938,7 @@ public class FindMax {
 
 其实是不是可以转换为 找到每个数右边最小的值？
 
-# 栈和队列
+# 栈和队列 :ok:
 
 
 
@@ -4932,7 +5209,9 @@ public:
  */
 ```
 
-## [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/)
+
+
+## [剑指 Offer 30. 包含min函数的栈](https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/) :no_mouth:
 
 难度简单281收藏分享切换为英文接收动态反馈
 
@@ -4967,6 +5246,8 @@ minStack.min();   --> 返回 -2.
 
 结果从辅助栈拿就行
 
+(因为只要比新的最小值大的，且位于后面的，就不可能被pop 不需要放入辅助栈)
+
 ```C++
 class MinStack {
 public:
@@ -4974,14 +5255,16 @@ public:
 
     stack<int> s;
     stack<int> smin;//降序辅助栈 存放每一阶段的最小值
-    MinStack() {
+    MinStack() 
+    {
         while(!s.empty())
             s.pop();
         while(!smin.empty())
             smin.pop();
     }
     
-    void push(int x) {
+    void push(int x) 
+    {
         s.push(x);
         if(smin.empty())
             smin.push(x);
@@ -4989,17 +5272,20 @@ public:
             smin.push(x);
     }
     
-    void pop() { 
+    void pop()
+    { 
         if(s.top()==smin.top())
             smin.pop();
         s.pop();    
     }
     
-    int top() {
+    int top() 
+    {
         return s.top();
     }
     
-    int min() {
+    int min() 
+    {
         return smin.top();
     }
 };
@@ -5165,7 +5451,7 @@ public:
 
 
 
-## 150. 逆波兰表达式求值
+## 150. 逆波兰表达式求值 
 
 https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/
 
@@ -5532,7 +5818,7 @@ public:
 
 
 
-##  [23. 合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
+##  [23. 合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/) :no_mouth:
 
 难度困难2044
 
@@ -5584,6 +5870,16 @@ public:
 
 
 
+这题有很多解法，具体见：
+
+[合并K个排序链表 - 合并 K 个升序链表 - 力扣（LeetCode）](https://leetcode.cn/problems/merge-k-sorted-lists/solution/he-bing-kge-pai-xu-lian-biao-by-leetcode-solutio-2/)
+
+
+
+方法0顺序合并，用一个变量 *ans* 来维护以及合并的链表，第I次循环把第 I个链表和 ans合并，答案保存到 ans 中。,时间复杂度 $$  O(k^2n)   $$。
+
+#####	法1：使用优先队列合并
+
 ```C++
 /**
  * Definition for singly-linked list.
@@ -5609,7 +5905,7 @@ public:
         priority_queue<ListNode*,vector<ListNode*>,cmp> heap;
         for(auto l:lists) 
         {
-            if(l)heap.push(l);//防止出现头为空
+            if(l)heap.push(l);//防止出现头为空 //if(l)!!!
         }
         ListNode *virhead=new ListNode();
         ListNode *tail=virhead;
@@ -5627,9 +5923,133 @@ public:
 };
 ```
 
+具体实现过程是将每个链表的头结点加入小顶堆中，每次从堆中取出最小的结点，将其加入到新链表的尾部，并将这个结点的下一个结点加入堆中，重复这个过程直到堆为空，最后返回新链表的头结点。
+
+注释版：
+
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    //定义一个小顶堆，用于存储每个链表的头结点
+    struct cmp//注意这个语法 是放在struct中的
+    {
+        bool operator() (ListNode *a,ListNode *b) 
+        {
+            return a->val>b->val;
+        }
+    };//;;;
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        //初始化小顶堆
+        priority_queue<ListNode*,vector<ListNode*>,cmp> heap;
+        for(auto l:lists) 
+        {
+            if(l)heap.push(l);//防止出现头为空
+        }
+        //创建虚拟头结点和尾结点
+        ListNode *virhead=new ListNode();
+        ListNode *tail=virhead;
+        //当堆不为空时，每次从堆中取出最小的结点，将其加入新链表的尾部，同时将该结点的下一个结点加入堆中
+        while(heap.size())
+        {
+            ListNode *t=heap.top();
+            heap.pop();
+            tail->next=t;
+            tail=tail->next;
+            if(t->next) heap.push(t->next);
+        }
+        //将新链表的尾结点指向空
+        tail->next=nullptr;
+        //返回新链表的头结点
+        return virhead->next;
+    }
+};
+
+```
+
+`priority_queue<ListNode*, vector<ListNode*>, cmp> heap;` 是一个优先队列，用于存储每个链表的头结点。
+
+其中，`ListNode*` 表示队列中存储的元素类型为指向 `ListNode` 的指针；`vector<ListNode*>` 表示底层容器使用 vector 来实现；`cmp` 是一个比较器，用于定义优先队列中的元素如何比较大小。
+
+由于这个代码需要将每个链表的头结点加入到一个小顶堆中，而小顶堆的实现可以使用 STL 中的优先队列来完成。在这里，我们使用了一个自定义的比较器 `cmp`，将小顶堆中的元素按照其 `val` 值的大小进行比较，从而保证每次取出的元素都是当前所有链表中 `val` 值最小的结点。
+
+关于这里的**底层容器**
+
+`priority_queue` 模板类的第二个参数是底层容器类型，可以是 `vector`、`deque` 或 `list` 等容器类型。如果没有指定底层容器类型，则默认使用 `vector` 容器。
+
+在这个代码中，我们使用了 `vector` 容器作为底层容器来实现小顶堆，因此可以省略第二个参数，即 `priority_queue<ListNode*, cmp> heap;`，这样就默认使用 `vector` 作为底层容器。
+
+**复杂度分析**
+
+- 时间复杂度: 考虑优先队列中的元素不超过 $$ k  $$个，那么插入和删除的时间代价为  $$ O(\log k)  $$ ，这 里最多有$$   k n  $$ 个点，对于每个点都被揷入删除各一次，故总的时间代价即渐进时间复杂度为 $$  O(k n \times \log k)   $$。
+
+- 空间复杂度：这里用了优先队列，优先队列中的元素不超过$$   k  $$ 个，故渐进空间复杂度为 $$  O(k)  $$
+
+  
+
+##### 法2：分治合并
+
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *merge2Lists(ListNode* l,ListNode* r)
+    {
+        ListNode* virhead=new ListNode();
+        ListNode* p=virhead,*pl=l,*pr=r;
+        while(pl&&pr)
+        {
+            if(pl->val<pr->val)
+            {
+                p->next=pl;
+                pl=pl->next;
+                p=p->next;
+            }
+            else
+            {
+                p->next=pr;
+                pr=pr->next;
+                p=p->next;
+            }
+        }
+        p->next=pl?pl:pr;
+        return virhead->next;
+
+    }
+    ListNode *merge(vector<ListNode*>& lists,int l,int r)
+    {
+        if(l==r)return lists[l];
+        if(l>r)return nullptr;
+        int mid=(l+r)>>1;
+        return merge2Lists(merge(lists,l,mid),merge(lists,mid+1,r));
+    }
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        return merge(lists,0,lists.size()-1);
+    }
+};
+```
 
 
-## 347.前 K 个高频元素
+
+## 347.前 K 个高频元素 :no_mouth:
 
 https://leetcode-cn.com/problems/top-k-frequent-elements/
 
@@ -5751,7 +6171,6 @@ public:
 me: 看的答案 学了新知识呢!
 
 ```c++
-class Solution {
 public:
 //下面这个不行 为什么
     // bool compare_func(pair<int,int> p1,pair<int,int> p2)
@@ -5801,6 +6220,17 @@ public:
 };
 ```
 
+其中的使用iterator不能替换为
+
+```C++
+//错误示例
+		// for(int i=0;i<nums.size();i++)
+        // {
+        //     pque.push({nums[i],umap[nums[i]]});
+        //     if(pque.size()>k)pque.pop();
+        // }//这个肯定不行 这个会放两次 会重复放的
+```
+
 
 
 ### 拓展
@@ -5843,9 +6273,7 @@ public:
 
 
 
-
-
-# 单调栈
+# 单调栈:ok:
 
 !!!单调栈 要维护两个容器 一个是单调栈 一个是输出结果res（如果直接cout也可以不维护）
 
@@ -5950,6 +6378,8 @@ nums1 中的所有整数同样出现在 nums2 中
 题解：
 
 https://leetcode-cn.com/problems/next-greater-element-i/solution/xia-yi-ge-geng-da-yuan-su-i-by-leetcode-bfcoj/
+
+**在一次逆序遍历中就弄一个hash，存所有的数对应的下一个更大元素。同时维护一个stack栈用于辅助存储hash**
 
 ![image-20220319151016715](# Leetcode  刷题总结 大厂等我.assets/image-20220319151016715.png)
 
@@ -6120,9 +6550,7 @@ public:
 
 
 
-
-
-# 单调队列
+# 单调队列:ok:
 
 ## 239.  滑动窗口最大值
 
@@ -6414,70 +6842,42 @@ public:
 
 
 
+23/06/17再做 直接用deque
+
+```C++
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int> que;
+        int l=0,r=0;
+        vector<int> res;
+        for(r=0;r<k;r++)
+        {
+            while(!que.empty()&&nums[r]>que.back())que.pop_back();
+            que.push_back(nums[r]);
+        }
+        res.push_back(que.front());
+        for(;r<nums.size();)
+        {
+            if(que.front()==nums[l])que.pop_front();
+            l++;
+            while(!que.empty()&&nums[r]>que.back())que.pop_back();
+            que.push_back(nums[r]);
+            r++;
+            res.push_back(que.front());
+        }
+        return res;
+    }
+};
+```
+
+
+
 ###  扩展
 
 大家貌似对单调队列 都有一些疑惑，首先要明确的是，题解中单调队列里的pop和push接口，仅适用于本题哈。单调队列不是一成不变的，而是不同场景不同写法，总之要保证队列里单调递减或递增的原则，所以叫做单调队列。 不要以为本地中的单调队列实现就是固定的写法哈。
 
 大家貌似对deque也有一些疑惑，C++中deque是stack和queue默认的底层实现容器（这个我们之前已经讲过啦），deque是可以两边扩展的，而且deque里元素并不是严格的连续分布的。
-
-
-
-### 下面这个是错的
-
-我刚开始的错误解法
-
-这是==困难==
-
-下面这个代码应该是没问题的 至少小数据测试过都可以 但是的那个tm大数据就不行 :no_entry_sign:  :no_entry: 
-
-![image-20210812111308910](# Leetcode  刷题总结 大厂等我.assets/image-20210812111308910.png)
-
-==下面这个"""不通过""""== :no_entry_sign:  :no_entry:  :no_entry_sign:  :no_entry:  :no_entry_sign:  :no_entry:  :no_entry_sign:  :no_entry:  :no_entry_sign:  :no_entry: 
-
-```c++
-		int j;
-        int max=nums[0];
-        int maxi=0;
-        vector<int> res;
-        for(int i=0;i<k;i++)
-        {
-            if(nums[i]>max)
-            {
-                max=nums[i];
-                maxi=i;
-            }
-        }
-        res.push_back(max);
-        
-        for(int i=k;i<nums.size();i++)
-        {
-            if(i-k+1>maxi)
-            {
-                max=nums[i-k+1];
-                maxi=i-k+1;
-                for(int j=i-k+1;j<=i;j++)
-                {
-                    if(nums[j]>max)
-                    {
-                      max=nums[j];
-                      maxi=j;
-                    }
-                }
-            }
-            else //max 在中间或者新的那个后面
-            {
-                if(nums[i]>max)
-                {
-                    max=nums[i];
-                    maxi=i;
-                }
-            }
-            res.push_back(max);
-        }
-        return res;
-```
-
-### 上面这个是错的 
 
 
 
@@ -17725,6 +18125,10 @@ public:
 ```
 
 
+
+前面某题的一种分治解法
+
+[23. 合并K个升序链表](# 法2：分治合并)
 
 
 

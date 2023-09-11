@@ -1,18 +1,174 @@
 ## 毕设 捏人 bs+动作
 
+公式解决了
+
+论文图片刚看到第三章
+
+
+
 ### chatgpt
+
+这个网页里面的网站介绍了目前很多的chatgpt镜像网站
 
 https://github.com/LiLittleCat/awesome-free-chatgpt
 
 gpt3.5
 
-[【博弈Ai】ChatGPT非官方国产镜像(GPT-3.5-Turbo)|注册|登录|账户 (bo-e.com)](https://ai.bo-e.com/)
+[【博弈Ai】ChatGPT非官方国产镜像(GPT-3.5-Turbo)|注册|登录|账户 (bo-e.com)](https://ai.bo-e.com/)  这个好像寄了
 
-可以解释一下“the word sets are fine-tuned(有调整的) by customized encoder E(which is a 8-layer temporal convolution network(TCN) with skip connections)”这句话的内在含义吗
+https://bettergpt.chat/ 寄了?（API:https://free.churchless.tech/v1/chat/completions）
+
+https://www.aitianhu.com/#/chat/1002
+
+
+
+我是用的翻墙的  不过我刚才测了这几个不用翻墙也行hh你可以试试 不过他们有可能过几天就被查杀了 到时只要去https://github.com/LiLittleCat/awesome-free-chatgpt这个网站上找别的可以用的就行了~~
+
+刚才测的这几个不用翻墙能用的：
+
+https://mirrorchat.extkj.cn/
+
+https://chat.6.bnu120.space/
+
+他可能会呼吁你捐款什么的  都不用管也不用捐hhh
+
+
+
+Beat
+
+### UNITY当前SCENE
+
+**0209**  表情  现在是驱动 如果是测试4 alliee-1.53
+
+其他测试
+
+1![image-20230414200533940](毕设 捏人 bs+动作.assets/image-20230414200533940.png)
+
+
+
+**0414**
+
+驱动加体型 裙子有点穿模
+
+
+
+**0423**
+
+驱动+体型（bs）+
+
+（改了牙齿）
+
+（改了near视角 后面可以改回来）
+
+
+
+**0415**
+
+（0415有 体型+人脸，但是衣服比较宽看不太出来，不过衣服和前面是统一的？衣服是贴身那个）
+
+0415 体型+人脸 （以及表情的骨骼） 人暂时不动
+
+根据不同panle打开bs/骨骼<img src="毕设 捏人 bs+动作.assets/image-20230423124809761.png" alt="image-20230423124809761" style="zoom:50%;" />
+
+**0417** 表情bs  场景中很多个人  有的是有综合的表情，有的是有单个表情
+
+
+
+**0518** 骨骼
+
+还可以写的  衣服的适配
+
+
+
+**0520** 骨骼表情
+
+
+
+**YT0613bone** 更新UI后的骨骼
+
+**YTestScene0613faceBS** 更新UI后的bs
+
+
+
+**0701** 更新UI后的语音驱动+BS（其实还有手势）
+
+
+
+**YTest0705Body**文件夹中有三个是body的
+
+body驱动+bs  动作
+
+//
+
+以下两个复制并更改UI后可以是body的软著
+
+**YT0613bone** 更新UI后的骨骼
+
+**YTestScene0613faceBS** 更新UI后的bs
+
+
+
+然后再把换装的搞出来
+
+
+
+动画系统
+
+那是手势？吗
+
+更改场景  **0701** 更新UI后的语音驱动+BS（其实还有手势）
+
+
+
+YTestSceneLook0215、YTestSceneLook0209可以换装
 
 
 
 ### 1.捏脸系统
+
+#### a、表情
+
+daz位置
+
+![image-20230417122106260](毕设 捏人 bs+动作.assets/image-20230417122106260.png)
+
+![image-20230417114518078](毕设 捏人 bs+动作.assets/image-20230417114518078.png)
+
+
+
+恶心：
+
+![image-20230417121236110](毕设 捏人 bs+动作.assets/image-20230417121236110.png)![image-20230417121421120](毕设 捏人 bs+动作.assets/image-20230417121421120.png)
+
+![image-20230417142106687](毕设 捏人 bs+动作.assets/image-20230417142106687.png)
+
+
+
+以下这个没作用
+
+
+
+
+
+微笑
+
+![image-20230417143519919](毕设 捏人 bs+动作.assets/image-20230417143519919.png)
+
+和上面一样的：
+
+![image-20230417143712565](毕设 捏人 bs+动作.assets/image-20230417143712565.png)
+
+
+
+![image-20230417121946069](毕设 捏人 bs+动作.assets/image-20230417121946069.png)
+
+根据其他的可以还原出这个表情
+
+
+
+#### （1）基于bs
+
+
 
 所谓的捏脸系统，就是可以通过UI对导入的人物的BS进行调整，同时要在执行动画的时候保留人物脸部的BS参数（**这点倒是不需要太过在意，因为骨骼动画并不会改变脸型的相关BS值**）。因此大概的思路就是通过slider来控制BS的值（注意，Unity的BS范围是0-100），并通过代码逻辑来控制。这里可以写一个简易的脚本如下：
 
@@ -86,6 +242,28 @@ smpl 也可以实现捏人+动作
 捏脸 还需要是如果闭眼，眉毛要一起闭
 
 
+
+##### bs
+
+[Blendshape学习笔记 (mianzi-lizi.com)](https://www.mianzi-lizi.com/post/blendshape学习笔记)
+
+
+
+#### （2）基于骨骼驱动
+
+1. 骨骼变换（Bone Transformation）：每个骨骼都可以通过矩阵变换（如旋转、平移、缩放）来控制模型的姿态。骨骼变换可以使用以下公式表示： $$[ T_{\text{total}} = T_{\text{translate}} \times T_{\text{rotate}} \times T_{\text{scale}} ] $$其中，$$( T_{\text{translate}} ) $$是平移矩阵，$$( T_{\text{rotate}} ) 是旋转矩阵，( T_{\text{scale}} )$$ 是缩放矩阵，$$( T_{\text{total}} ) $$是骨骼的总变换矩阵。
+
+
+
+
+
+思路：动态获取所有hip下的骨骼
+
+将其名字放进栏中，每个栏是一个带名字的按钮，然后按了之后后边的![image-20230415120237509](毕设 捏人 bs+动作.assets/image-20230415120237509.png)
+
+可以去调整
+
+UI上有9个滚动条？去调整 或者先实现3个吧  先来Scale 
 
 
 
@@ -300,7 +478,61 @@ Linear Blending Skinning (LBS) 指的是通过操纵骨骼来使得 mesh 发生�
 
 
 
+
+
+![image-20230420200902708](毕设 捏人 bs+动作.assets/image-20230420200902708.png)
+
+
+
+![image-20230420201056340](毕设 捏人 bs+动作.assets/image-20230420201056340.png)
+
+![image-20230420193910873](毕设 捏人 bs+动作.assets/image-20230420193910873.png)
+
+![image-20230420193931554](毕设 捏人 bs+动作.assets/image-20230420193931554.png)
+
+
+
+### + 语音驱动口型
+
+我们是先提取音频特征，然后通过网络估的bs系数，有一个仓库可以看看，他这个是用的FLAME人脸模型，我们换成了daz那个，这个仓库输出的是所有的顶点位置，就是他用tensorflow1.0写的代码
+
+https://github.com/TimoBolkart/voca
+
+对应的音频、视频结果和bs系数，txt文件每行是一帧的38个bs系数，npy文件用numpy读出来应该是数组，最后我这边给的结果应该也是数组
+
+
+
+介绍
+
+https://www.jiqizhixin.com/articles/2019-06-18-11
+
+VOCA（Voice Operated Character Animation），这是一种简单且通用的语音驱动面部动画框架，可适用于不同个体。VOCA 可以将任何语音信号和静态三维头部网格作为输入，并输出逼真的面部动画
+
+
+
+
+
 ### 3. 语音驱动动作
+
+论文《BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis》、
+
+
+
+
+
+![image-20230418230016039](毕设 捏人 bs+动作.assets/image-20230418230016039.png)
+
+
+
+尝试解决：
+
+![image-20230419011531123](毕设 捏人 bs+动作.assets/image-20230419011531123.png)
+
+![image-20230419011537603](毕设 捏人 bs+动作.assets/image-20230419011537603.png)
+
+没权限
+
+
 
 介绍文章：
 
@@ -382,6 +614,8 @@ pip install configargparse
 
    1）pip install protobuf==3.20.*
 
+   pip install IPython
+
    2）文件没找到 ![image-20230325223716659](毕设 捏人 bs+动作.assets/image-20230325223716659.png)
 
    所以我们把datasets放在了别的他应该在的地方
@@ -430,11 +664,119 @@ pip install configargparse
 
 
 
+###### windows 上跑
+
+https://blog.csdn.net/weixin_42770591/article/details/97247225
+
+
+
+![image-20230418205059296](毕设 捏人 bs+动作.assets/image-20230418205059296.png)
+
+![image-20230418205304310](毕设 捏人 bs+动作.assets/image-20230418205304310.png)
+
+
+
+![image-20230418212059195](毕设 捏人 bs+动作.assets/image-20230418212059195.png)
+
+![image-20230418212120219](毕设 捏人 bs+动作.assets/image-20230418212120219.png)
+
+
+
+
+
+![image-20230418212225703](毕设 捏人 bs+动作.assets/image-20230418212225703.png)
+
+把所有的cuda 改为cpu
+
+https://www.cnblogs.com/hyh123/p/16296161.html
+
+
+
+------
+
+
+
+下面的是错误的 改回来了
+
+根据他的报错加了一个文件
+
+![image-20230418214211306](毕设 捏人 bs+动作.assets/image-20230418214211306.png)
+
+这样绝对不行，数组会多一个，所以我们把它原来对应的这个名改了试试:
+
+![image-20230419014032808](毕设 捏人 bs+动作.assets/image-20230419014032808.png)
+
+
+
+![image-20230418221130841](毕设 捏人 bs+动作.assets/image-20230418221130841.png)
+
+
+
+----------------
+
+真正需要改的：
+
+###### windows跑的结果
+
+ok的：
+
+![image-20230419131323661](毕设 捏人 bs+动作.assets/image-20230419131323661.png)
+
+
+
+
+
+存在论文图片那里了 有各个网络架构可以研究
+
+
+
+结果：这个文件会从没有到有
+
+
+
+![image-20230418215601825](毕设 捏人 bs+动作.assets/image-20230418215601825.png)
+
+![image-20230418215629176](毕设 捏人 bs+动作.assets/image-20230418215629176.png)
+
+txt里会有log也就是结果输出信息
+
+![image-20230418215830140](毕设 捏人 bs+动作.assets/image-20230418215830140.png)
+
+以下这些就是生成了的
+
+![image-20230418215636657](毕设 捏人 bs+动作.assets/image-20230418215636657.png)
+
+###### 调试
+
+[pycharm在需要输入命令行参数时如何调试 | Juntao Tan的个人博客 (tanjuntao.github.io)](https://tanjuntao.github.io/2019/04/30/pycharm在需要输入命令行参数时如何调试/)
+
+如果有输入参数请加上以下步骤：
+
+![image-20230419160003653](毕设 捏人 bs+动作.assets/image-20230419160003653.png)
+
+然后直接点![image-20230419164501760](毕设 捏人 bs+动作.assets/image-20230419164501760.png)即可
+
+
+
+###### 得到结果后的操作
+
+linux跑完后
+
 然后我们放进一些在线bvh解释器中
 
 http://lo-th.github.io/olympe/BVH_player.html
 
 ![BEAT语音驱动动作](毕设 捏人 bs+动作.assets/BEAT语音驱动动作.gif)
+
+左边用windows跑的
+
+每次生成的动作不同
+
+
+
+![image-20230419131213781](毕设 捏人 bs+动作.assets/image-20230419131213781.png)
+
+
 
 bvh效果很不错
 
@@ -626,7 +968,74 @@ https://vocalremover.org/zh/cutter
 
 #### 一些操作
 
+###### 尝试linux下载这个包
 
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=FILEID' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=FILEID" -O FILENAME && rm -rf /tmp/cookies.txt
+
+
+
+```
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Akf0WgAwuH2fvlWbvNpif4XRqXlpznh9' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Akf0WgAwuH2fvlWbvNpif4XRqXlpznh9" -O BEAT_FILENAME && rm -rf /tmp/cookies.txt
+
+```
+
+https://drive.google.com/file/d/1Akf0WgAwuH2fvlWbvNpif4XRqXlpznh9/view?usp=share_link
+
+
+
+1Akf0WgAwuH2fvlWbvNpif4XRqXlpznh9
+
+
+
+
+
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1EKuWH8q178QOtFUYaNohdkZbBHQYAmhL' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1EKuWH8q178QOtFUYaNohdkZbBHQYAmhL" -O FILENAME1 && rm -rf /tmp/cookies.txt
+
+1EKuWH8q178QOtFUYaNohdkZbBHQYAmhL
+
+
+
+
+
+https://drive.google.com/drive/folders/1EKuWH8q178QOtFUYaNohdkZbBHQYAmhL
+
+
+
+###### 语音
+
+<img src="毕设 捏人 bs+动作.assets/image-20230423224334054.png" alt="image-20230423224334054" style="zoom: 67%;" />
+
+
+
+  Xiamen University (XMU),located in the southeastern of Fujiang province,was officially founded in 1921 with the only economic support from Mr.Tan Kah Kee.Andit's the first university set up by overseas Chinese in the history of Chineseeducation.During Mr.Wenqing Lin ( the first head master of XMU)’ s leading, XMU setup 5 institutes and 21 departments. With holding the school motto "Pursue Excellence,Strive for Perfection ,many excellent professors and teachers were attracted to the XMU,including Lu xun.Nowadays XMU, which is in the list of “211 Project”&" 985 Project”,is thought to be one of the most influential universities in Chinese educationsystem.And XMU has been the cradle for many famous people such as YuGuangzhong,Lu Jiaxi,ChenJingrun,Lin Feng,Yi Zhongtian, etc.They make great differencefor the society in many aspects.
+
+chatgpt改一些语法：
+
+Xiamen University (XMU), located in the southeast of Fujian province, was officially founded in 1921 with the sole financial support of Mr. Tan Kah Kee. It is the first university set up by overseas Chinese in the history of Chinese education. Under the leadership of Mr. Wenqing Lin (the first headmaster of XMU), the university set up 5 institutes and 21 departments. By upholding the school motto "Pursue Excellence, Strive for Perfection," many excellent professors and teachers were attracted to XMU, including Lu Xun. Nowadays, XMU is considered to be one of the most influential universities in the Chinese education system and is listed under the "211 Project" and "985 Project." XMU has been the cradle for many famous people, such as Yu Guangzhong, Lu Jiaxi, Chen Jingrun, Lin Feng, and Yi Zhongtian, who have made significant contributions to society in various aspects.
+
+
+
+chatgpt写：
+
+Xiamen University (XMU) is a prestigious public research university located in Xiamen, a coastal city in the southeast of China's Fujian province. Founded in 1921 by Mr. Tan Kah Kee, a renowned overseas Chinese philanthropist, XMU is one of the oldest and most respected universities in China.
+
+Over the years, XMU has developed a reputation for excellence in teaching and research, and it is widely regarded as one of China's top universities. The university has a strong emphasis on interdisciplinary research and has established partnerships with many leading universities around the world.
+
+XMU offers a wide range of undergraduate, graduate, and doctoral programs in fields such as economics, management, law, engineering, medicine, and the arts. The university has a diverse student body, with students from all over China and more than 100 countries around the world.
+
+In recent years, XMU has been ranked among the top universities in China and has been recognized as a "Project 211" and "Project 985" university, which are initiatives aimed at promoting the development of China's higher education system.
+
+With its beautiful campus, world-class facilities, and talented faculty and students, Xiamen University is a vibrant and dynamic academic community that is committed to excellence in education and research.
+
+厦门大学是一所位于中国福建省东南沿海城市厦门的著名公立研究型大学。该校成立于1921年，由知名的华侨慈善家陈嘉庚先生创建，是中国历史最悠久、最受尊重的大学之一。
+
+多年来，厦门大学在教学和研究方面赢得了卓越声誉，被广泛认为是中国顶尖的大学之一。该校强调跨学科研究，并与许多世���领先的大学建立了合作关系。
+
+厦门大学提供广泛的本科、研究生和博士课程，涵盖经济学、管理学、法学、工程学、医学和艺术等领域。学生群体多样化，来自全国各地以及100多个国家和地
+
+
+
+###### 其他
 
 目前动作系统需要使用generic
 
@@ -722,6 +1131,12 @@ Currently, we do not split the dataset based on speaker, i.e., some speakers onl
 
 
 
+#### beat bvh重定向到fbx
+
+https://github.com/PantoMatrix/BEAT
+
+
+
 
 
 #### chatgpt
@@ -736,7 +1151,164 @@ gpt3.5
 
 
 
+一些预处理的结果 语义的：
+
+可能是下面这个
+
+<img src="毕设 捏人 bs+动作.assets/image-20230414121300171.png" alt="image-20230414121300171" style="zoom:50%;" />
+
+#### 网络图
+
+![image-20230427161917073](毕设 捏人 bs+动作.assets/image-20230427161917073.png)
+
+```mermaid
+graph TD;
+	T(文本)-->|输入|ET[文本编码器];
+	ET-->|输出|pt[文本特征向量];
+	
+	SID(演讲者ID)-->|输入|ESTD[演讲者ID编码器];
+	ESTD-->|输出|pid[演讲者ID特征向量];
+	
+	Emo(情感标签)-->|输入|EEmo[情感编码器];
+	EEmo-->|输出|pemo[情感特征向量];
+	
+	
+	pt-->|输入|EWav[音频编码器];
+	pid-->|输入|EWav;
+	pemo-->|输入|EWav;
+	Wav(音频)-->|输入|EWav[音频编码器];
+	EWav[音频编码器]-->|输出|pwav[音频特征向量];
+	
+	
+	
+	pt-->|输入|Ef[面部表情编码器];
+	pid-->|输入|Ef;
+	pemo-->|输入|Ef;
+	pwav-->|输入|Ef;
+	facial(面部表情)-->|输入|Ef;
+	Ef[面部表情编码器]-->|输出|pf[面部表情特征向量];
+	
+
+	pt-->|连接|pall[连接后的所有特征];
+	pid-->|连接|pall;
+	pemo-->|连接|pall;
+	pwav-->|连接|pall;
+	pf-->|连接|pall;
+	
+	pall-->|输入|DM[手势动作解码器];
+	DM-->|输出|rec[生成的手势动作结果];
+```
+
 #### 1、Text Encoder 文本编码器
+
+这段代码实现了一个文本编码器（TextEncoderTCN），其中采用了基于时间卷积网络（Temporal Convolutional Network, TCN）的结构。下面是对这段代码的注释：
+
+- args：参数类，包含了一些模型参数，如隐藏层大小、层数等等。
+- n_words：词汇表大小。
+- embed_size：词向量维度大小，默认为300。
+- pre_trained_embedding：预训练词向量，可以是一个numpy数组或torch张量，大小为(n_words, embed_size)。如果为None，则使用随机初始化的词向量。
+- kernel_size：卷积核大小，默认为2。
+- dropout：丢弃率，默认为0.3。
+- emb_dropout：词向量丢弃率，默认为0.1。
+
+```python
+class TemporalConvNet(nn.Module):
+    def __init__(self, num_inputs, num_channels, kernel_size=2, dropout=0.2):
+        super(TemporalConvNet, self).__init__()
+        layers = [] # 用于存储多层的TemporalBlock模块
+        num_levels = len(num_channels) # TemporalBlock模块的层数
+        for i in range(num_levels):
+            dilation_size = 2 ** i # 每层TemporalBlock的扩张率，通过2的幂次方来实现不同尺度的感受野
+            in_channels = num_inputs if i == 0 else num_channels[i-1] # 输入通道数
+            out_channels = num_channels[i] # 输出通道数
+            # 创建TemporalBlock模块并添加到layers列表中
+            layers += [TemporalBlock(in_channels, out_channels, kernel_size, stride=1, dilation=dilation_size,
+                                     padding=(kernel_size-1) * dilation_size, dropout=dropout)]
+        self.network = nn.Sequential(*layers) # 创建网络结构
+
+    def forward(self, x):
+        return self.network(x)
+
+```
+
+`TemporalConvNet` 类定义了一个基于时间卷积网络的模块，其中包含了多层的 `TemporalBlock` 模块。每一层的 `TemporalBlock` 模块具有不同的扩张率（dilation rate）来实现不同尺度的感受野，以捕捉文本中的长程依赖关系。
+
+```python
+class TextEncoderTCN(nn.Module):
+    def __init__(self, args, n_words, embed_size=300, pre_trained_embedding=None,
+                 kernel_size=2, dropout=0.3, emb_dropout=0.1):
+        super(TextEncoderTCN, self).__init__()
+
+        if pre_trained_embedding is not None:  
+            assert pre_trained_embedding.shape[0] == n_words # 检查预训练词向量的大小是否与词汇表大小匹配
+            assert pre_trained_embedding.shape[1] == embed_size # 检查预训练词向量的维度是否与指定的词向量维度匹配
+            # 创建嵌入层并使用预训练词向量来初始化词向量权重，可以选择是否冻结权重
+            self.embedding = nn.Embedding.from_pretrained(torch.FloatTensor(pre_trained_embedding),
+                                                          freeze=args.freeze_wordembed)
+        else:
+            # 创建嵌入层并使用随机初始化的权重
+            self.embedding = nn.Embedding(n_words, embed_size)
+
+        num_channels = [args.hidden_size] * args.n_layer # 每层的输出通道数均为隐藏层大小
+        # 创建时间卷积网络模块
+        self.tcn = TemporalConvNet(embed_size, num_channels, kernel_size, dropout=dropout)
+
+        # 创建线性层，用于将时间卷积网络的输出转换为预测值
+        self.decoder = nn.Linear(num_channels[-1], args.word_f)
+        self.drop = nn.Dropout(emb_dropout) # 创建丢弃层，用于在训练过程中进行随机丢弃
+        self.emb_dropout = emb_dropout # 记录词向量丢弃率
+        self.init_weights() # 参数初始化操作
+
+    def init_weights(self):
+        self.decoder.bias.data.fill_(
+
+```
+
+`TextEncoderTCN` 类定义了一个基于 TCN 的文本编码器，其中使用了 `TemporalConvNet` 模块作为主要的编码器。它接收一个输入文本序列，并将其嵌入为向量表示。然后通过 TCN 模块进行时间维度的卷积操作，之后再经过线性层进行预测输出。此外，还包含了一些初始化和 dropout 操作。
+
+这段代码还使用了 `args` 参数来配置模型的超参数，例如隐藏层的大小、卷积
+
+
+
+**跳过连接**
+
+在这个实现中，没有显式地使用跳过连接（skip connection），但是通过 TemporalBlock 模块的设计，隐式地实现了跳过连接的效果。TemporalBlock 模块包含了两个卷积层和一个门控线性单元（Gated Linear Unit, GLU）模块，（错误 并没有使用GLU）其中 GLU 模块的输入同时也是卷积层的输入，因此可以认为是一种跳过连接的实现方式。这种设计能够在增加模型深度的同时，缓解梯度消失问题，并提高模型的表现。
+
+根据给出的代码，`TemporalBlock` 模块内部并没有显式地定义跳过连接，因此这个代码片段中没有使用跳过连接。不过，`TemporalConvNet` 模块通过堆叠多个 `TemporalBlock` 模块，可以形成深度卷积神经网络，并且不同的 `TemporalBlock` 模块的输入和输出之间具有短路连接（也就是残差连接），因此整个网络结构具有类似于跳过连接的功能。
+
+
+
+在 `TemporalConvNet` 的构造函数中，创建了多个 `TemporalBlock` 模块，并将它们堆叠起来，形成了一个深度卷积神经网络。在堆叠过程中，不同的 `TemporalBlock` 模块的输入和输出之间具有短路连接（也就是残差连接）。具体来说，当 `i>0` 时，`in_channels` 的值为上一层 `TemporalBlock` 模块的输出通道数，即 `num_channels[i-1]`，此时会将上一层的输出和当前层的输出相加，实现了短路连接的效果。以下是代码中实现短路连接的部分：
+
+```python
+lessCopy codefor i in range(num_levels):
+    dilation_size = 2 ** i
+    in_channels = num_inputs if i == 0 else num_channels[i-1]
+    out_channels = num_channels[i]
+    layers += [TemporalBlock(in_channels, out_channels, kernel_size, stride=1, dilation=dilation_size,                             padding=(kernel_size-1) * dilation_size, dropout=dropout)]
+```
+
+因此，虽然 `TemporalBlock` 模块内部并没有显式地定义跳过连接，但是 `TemporalConvNet` 模块整体具有短路连接的功能
+
+
+
+这段代码中的 `TemporalConvNet` 类在构造函数中创建了多个 `TemporalBlock` 模块，并将它们堆叠起来形成一个深度卷积神经网络。在这个堆叠的过程中，不同的 `TemporalBlock` 模块的输入和输出之间具有短路连接（残差连接），用于将上一层的输出和当前层的输出相加。这种短路连接的作用是将信息从较浅的层直接传递到较深的层，有助于缓解梯度消失的问题，促进梯度在网络中的流动，并有助于提高网络的训练效果和模型的准确性。
+
+名词解释：**感受野**
+
+感受野（receptive field）是指在深度学习中，一个神经元（或卷积核）对应输入的区域大小。在卷积神经网络中，一个神经元对应的感受野大小可以通过其所在的层数和卷积核大小计算得到。对于文本数据，感受野也可以被解释为模型中每个位置对输入文本的不同程度关注或“看到”的范围大小，或者理解为模型学习到的一种特征提取方式。在这个实现中，通过使用不同扩张率的卷积核，TCN模型可以实现不同感受野大小的特征提取，以更好地捕捉文本中的长程依赖关系。
+
+
+
+具体来说，在TCN模型中，每一层的卷积核都是固定大小的，但是在进行卷积计算时，通过对卷积核进行不同程度的扩张（也就是设置不同的 dilation rate），可以使得卷积核对应的感受野在时间维度上变得更宽，从而捕捉更长程的依赖关系。这种做法与传统的增加卷积层深度或增加卷积核大小的做法相比，可以通过更少的参数实现更好的效果。另外，由于TCN模型采用了类似于残差网络的结构，可以有效缓解梯度消失问题，使得模型训练更加稳定和高效。
+
+
+
+**梯度**
+
+在这个网络和代码中，梯度是指损失函数对网络参数的偏导数，即反向传播算法计算的值。在训练过程中，我们希望通过不断调整网络参数，最小化损失函数，使得网络的输出和真实值之间的误差尽可能小。为了实现这个目标，我们需要计算损失函数对每一个参数的梯度，并根据梯度的大小更新参数，使得损失函数不断减小，直到收敛。因此，在神经网络中，梯度是非常重要的概念，它是训练过程中的关键之一。
+
+
 
 ##### 文本编码器-TCN
 
@@ -895,6 +1467,16 @@ TCN（Temporal Convolutional Network）是一种基于卷积神经网络（CNN�
 
 
 
+
+
+$$z_{i}^{\mathrm{T}}=E_{\mathrm{T}}\left(v_{i-f}^{\mathrm{T}}, \ldots, v_{i+f}^{\mathrm{T}}\right)$$
+
+$$p_{i}^{\mathrm{text}}=E_{\mathrm{text}}\left(e_{i-17}^{\mathrm{text}},e_{i-16}^{\mathrm{text}},e_{i-15}^{\mathrm{text}},e_{i-14}^{\mathrm{text}}, \ldots,e_{i}^{\mathrm{text}},\ldots,e_{i+16}^{\mathrm{text}}, e_{i+17}^{\mathrm{text}}\right)$$
+
+
+
+
+
 **基于上面的问题，后文海提到了“For each frame i, the TCN fusions the information from 2f = 34 frames to generate final latent feature of text” 结合上文，这句话是什么意思呢**
 
 根据上文，该句话意思是，在每个帧i中，TCN将来自2f = 34个帧的信息融合起来，生成文本的最终潜在特征。
@@ -926,6 +1508,16 @@ TCN（Temporal Convolutional Network）是一种基于卷积神经网络（CNN�
  we use embedding-layer as speaker ID encoder,  As the speaker ID does not change instantly, we only use the current frame speaker ID to calculate its latent features. 
 
 On the other hand, we use a combination of embedding-layer and 4-layer TCN as the emotion encoder, *E*E, to extract the temporal emotion variations.
+
+
+
+$$p_{i}^{\mathrm{speakerID}}=E_{\mathrm{speakerID}}\left(e_{i}^{\mathrm{speakerID}}\right)$$
+
+![img](毕设 捏人 bs+动作.assets/wps1-16819125341511.jpg)
+
+
+
+$$p_{i}^{\mathrm{emotion}}=E_{\mathrm{emotion}}\left(e_{i-f}^{\mathrm{emotion}},\ldots,e_{i+f}^{\mathrm{emotion}}\right)$$
 
 
 
@@ -979,6 +1571,231 @@ TCN层是由多个卷积层和非线性激活函数构成的神经网络层，�
 
 
 
+##### Speaker ID encoder
+
+```python
+    self.speaker_embedding = None
+        if self.speaker_f is not 0:
+            self.in_size += self.speaker_f
+            self.speaker_embedding =   nn.Sequential(
+                nn.Embedding(self.speaker_dims, self.speaker_f),
+                nn.Linear(self.speaker_f, self.speaker_f), 
+                nn.LeakyReLU(True)
+            )
+```
+
+- `self.speaker_embedding`: 这是一个 `nn.Sequential`，其中包含了一个嵌入层（`nn.Embedding`）和一个线性层（`nn.Linear`），用于将讲话者 ID 编码为向量表示。如果 `speaker_f` 为 0，那么这个组件将不会被创建。
+
+  
+
+这个模型可以看作是一个使用自定义的 Speaker ID 和 Emotion 编码器的 End-to-End 模型。
+
+
+
+，说话人身份编码器被包含在一个 Sequential() 中，采用了 Embedding 层、线性层和 LeakyReLU 激活函数。
+
+
+
+这段代码的作用是定义了一个嵌入层 `self.speaker_embedding`，用于将每个说话人ID映射为一个固定长度的向量，即所谓的说话人ID编码（Speaker ID Encoders）。
+
+首先，该代码段会通过判断是否需要加入说话人ID编码特征，从而决定是否定义 `self.speaker_embedding`。当 `self.speaker_f` 不等于0时，即需要加入说话人ID编码特征时，代码会将输入数据 `in_size` 的维度增加 `self.speaker_f`。接着，定义了 `self.speaker_embedding` 作为一个包含三个层的神经网络模型，包括一个嵌入层，一个线性层和一个LeakyReLU激活函数层。其中，嵌入层将每个说话人ID映射为一个向量，向量长度为 `self.speaker_f`，然后经过线性层和激活函数层进行处理。
+
+这段代码的主要作用是定义了一个能够将说话人ID编码转换为固定长度向量表示的神经网络模型，为后续对话手势合成任务提供了说话人身份的上下文信息，从而可以更好地反映对话中不同对话者之间的情感和语境。同时，由于神经网络的参数可以通过反向传播算法进行训练，因此该模型也可以通过数据自适应地学习到更好的说话人ID编码映射规律，提高对话手势合成的性能。
+
+
+
+**nn.Embedding**
+
+`nn.Embedding` 是 PyTorch 中的一个层，用于将一个整数序列映射成一个浮点数向量序列。在上面的代码中，`nn.Embedding` 被用来将说话人的ID编码映射为一个固定长度的向量表示。
+
+在使用 `nn.Embedding` 时，需要提供两个参数，分别是词表大小（即词汇表中的单词个数）和单词向量维度。具体而言，`nn.Embedding` 的输入是一个整数张量，每个整数代表一个单词的索引，输出是一个浮点数张量，每个浮点数向量都表示对应索引的单词的词向量。
+
+在上述代码中，`nn.Embedding` 的第一个参数 `self.speaker_dims` 表示说话人ID的个数，第二个参数 `self.speaker_f` 表示输出的词向量的维度。因此，`nn.Embedding` 的输出张量的形状为 `(batch_size, seq_len, speaker_f)`，其中 `batch_size` 表示输入张量中的序列数，`seq_len` 表示序列中单词的个数，`speaker_f` 表示词向量的维度。
+
+总之，`nn.Embedding` 层是一种将整数序列映射为浮点数向量序列的常用神经网络层，在自然语言处理领域中被广泛应用，例如将单词序列映射为词向量序列，将标签序列映射为标签向量序列等。
+
+
+
+**nn.Sequential**
+
+`nn.Sequential` 是 PyTorch 中的一个容器，它可以按照顺序将多个神经网络层（如卷积层、线性层、激活函数层等）组合成一个神经网络模型。在上面的代码中，`nn.Sequential` 被用来组合多个神经网络层，作为构建 `self.speaker_embedding` 的一部分。
+
+使用 `nn.Sequential` 可以方便地定义一个包含多个神经网络层的模型，并且能够按照顺序执行这些层的前向传播过程。在本例中，`nn.Sequential` 包含了一个嵌入层、一个线性层和一个激活函数层，这些层将依次被执行以完成 `self.speaker_embedding` 的定义。每一层的输出都将作为下一层的输入，直到模型输出一个固定长度的向量表示。
+
+使用 `nn.Sequential` 可以简化模型的构建过程，并且能够通过添加、删除或修改��中的神经网络层来方便地修改模型结构。同时，PyTorch还提供了其他容器类（如`nn.ModuleList`、`nn.ModuleDict`等），也可以用于组织和管理神经网络层。
+
+
+
+**nn.Linear**
+
+`nn.Linear` 是 PyTorch 中的一个线性层，其作用是对输入进行线性变换，也称作全连接层。在这段代码中，`nn.Linear(self.s)`
+
+这里的 `nn.Linear` 是在对嵌入后的说话人特征进行线性变换。具体来说，它将输入的向量进行以下的计算：
+
+$$
+y = xW^T + b
+$$
+
+其中，$x$ 是输入的向量，$W$ 是权重矩阵，$b$ 是偏置向量，$y$ 是输出的向量。在这里，输入的向量是嵌入后的说话人特征，其维度大小为 `self.speaker_f`，权重矩阵的大小为 `(self.speaker_f, self.speaker_f)`，偏置向量的大小为 `(self.speaker_f,)`，输出的向量的大小也为 `self.speaker_f`。
+
+在实现中，`nn.Linear` 层的前向计算采用了矩阵乘法和广播机制来实现，即将输入向量和权重矩阵相乘，再加上偏置向量。这个过程可以使用 PyTorch 中的 `torch.matmul` 函数和 `broadcasting` 机制来实现，其具体实现如下：
+
+```python
+class Linear(Module):
+    def __init__(self, in_features: int, out_features: int, bias: bool = True) -> None:
+        super(Linear, self).__init__()
+        self.in_features = in_features
+        self.out_features = out_features
+        self.weight = Parameter(torch.Tensor(out_features, in_features))
+        if bias:
+            self.bias = Parameter(torch.Tensor(out_features))
+        else:
+            self.register_parameter('bias', None)
+        self.reset_parameters()
+
+    def reset_parameters(self) -> None:
+        kaiming_uniform_(self.weight, a=math.sqrt(5))
+        if self.bias is not None:
+            fan_in, _ = init._calculate_fan_in_and_fan_out(self.weight)
+            bound = 1 / math.sqrt(fan_in)
+            init.uniform_(self.bias, -bound, bound)
+
+    def forward(self, input: Tensor) -> Tensor:
+        return F.linear(input, self.weight, self.bias)
+```
+
+其中，`self.weight` 是权重矩阵，大小为 `(out_features, in_features)`，`self.bias` 是偏置向量，大小为 `(out_features,)`。`reset_parameters` 函数用于初始化权重矩阵和偏置向量。`forward` 函数中，`F.linear` 函数实现了线性变换的前向计算。
+
+总之，`nn.Linear` 层是神经网络中最基本的层之一，其作用是对输入进行线性变换。在这段代码中，通过对嵌入后的说话人特征进行线性变换，可以增强模型对不同说话人的区分能力，从而提高生成手势动画的多样性和真实感。
+
+
+
+**激活函数**
+
+<img src="毕设 捏人 bs+动作.assets/image-20230413192409315.png" alt="image-20230413192409315" style="zoom:50%;" />
+
+**输入**
+
+从以上代码和论文的描述中可以看出说话人ID编码器的输入。具体而言，代码中的 `in_id` 参数被用作说话人ID的输入，其表示一个整数张量，每个整数代表一个说话人的ID。同时，在论文中也描述了模型的输入数据包含两部分，分别是语音信号和说话人ID。在模型的前向传播过程中，这两部分信息会被同时输入到模型中进行处理，其中说话人ID会经过说话人ID编码器进行编码，并将编码后的向量表示拼接到输入数据的最后一个维度上，以提供说话人的身份信息给模型进行处理。因此，从代码和论文的描述中可以看出，说话人ID编码器的输入是一个整数张量，每个整数代表一个说话人的ID。
+
+
+
+**废弃**（因为可能错了）
+
+演讲者ID编码器的输入是一个一维整数张量，每个整数代表一个演讲者的ID。
+
+
+
+##### Emotion encoder
+
+`self.emotion_embedding`: 这也是一个 `nn.Sequential`，其中包含了一个嵌入层和一个线性层，用于将情感标签编码为向量表示。此外，它还包含了一个卷积层（`nn.Conv1d`），用于对情感向量进行后处理。如果 `emotion_f` 为 0，那么这个组件将不会被创建。
+
+
+
+这段代码主要实现了对说话人信息和情感信息进行嵌入，并将其与输入数据进行拼接。
+
+对于说话人信息（`self.speaker_embedding`），如果 `self.speaker_f` 不为0，则将其嵌入到模型中。具体来说，使用 `nn.Embedding` 将输入的说话人 ID 映射到一个固定维度的向量中，然后使用 `nn.Linear` 将该向量映射到另一个固定维度的向量，最后使用 `nn.LeakyReLU` 激活函数进行非线性变换。这个过程可以学习到每个说话人的特征表示，并且在后续的模型训练中可以用于区分不同说话人的语音信号。
+
+对于情感信息（`self.emotion_embedding`），同样的方式进行嵌入，不同的是将嵌入后的特征向量输入到一个包含多个卷积层的神经网络中，通过卷积操作提取情感信息的特征。具体来说，使用 `nn.Conv1d` 进行卷积，通过 `nn.BatchNorm1d` 进行归一化，使用 `nn.LeakyReLU` 激活函数进行非线性变换。这个过程可以提取出输入情感的高级特征，以便于后续模型学习到与情感相关的语音信号特征。
+
+在另一个类的代码中，如果模型中包含了情感信息的嵌入器，则将输入的情感 ID 映射为情感特征向量，并通过卷积网络提取情感的高级特征。然后将该情感特征向量与输入数据进行拼接。最终，将拼接后的数据输入到模型中进行训练。这个过程可以让模型学习到在不同情感和说话人下的语音信号特征，从而提高模型的表现能力。
+
+
+
+```python
+self.emotion_embedding = None
+if self.emotion_f is not 0:
+    self.in_size += self.emotion_f
+    # 如果self.emotion_f不为0，则将输入维度self.in_size加上self.emotion_f
+    # 以便于后续将情感特征向量与输入数据拼接
+    self.emotion_embedding = nn.Sequential(
+        nn.Embedding(self.emotion_dims, self.emotion_f),
+        # 使用nn.Embedding将情感ID映射为固定维度的向量
+        nn.Linear(self.emotion_f, self.emotion_f)
+        # 使用nn.Linear将嵌入后的向量映射为另一个固定维度的向量
+    )
+```
+
+
+
+```python
+self.speaker_embedding = None
+if self.speaker_f is not 0:
+    self.in_size += self.speaker_f
+    # 如果self.speaker_f不为0，则将输入维度self.in_size加上self.speaker_f
+    # 以便于后续将说话人特征向量与输入数据拼接
+    self.speaker_embedding = nn.Sequential(
+        nn.Embedding(self.speaker_dims, self.speaker_f),
+        # 使用nn.Embedding将说话人ID映射为固定维度的向量
+        nn.Linear(self.speaker_f, self.speaker_f),
+        # 使用nn.Linear将嵌入后的向量映射为另一个固定维度的向量
+        nn.LeakyReLU(True)
+        # 使用nn.LeakyReLU作为激活函数进行非线性变换
+    )
+
+self.emotion_embedding = None
+if self.emotion_f is not 0:
+    self.in_size += self.emotion_f
+    # 如果self.emotion_f不为0，则将输入维度self.in_size加上self.emotion_f
+    # 以便于后续将情感特征向量与输入数据拼接
+    self.emotion_embedding = nn.Sequential(
+        nn.Embedding(self.emotion_dims, self.emotion_f),
+        # 使用nn.Embedding将情感ID映射为固定维度的向量
+        nn.Linear(self.emotion_f, self.emotion_f)
+        # 使用nn.Linear将嵌入后的向量映射为另一个固定维度的向量
+    )
+
+    self.emotion_embedding_tail = nn.Sequential(
+        nn.Conv1d(self.emotion_f, 8, 9, 1, 4),
+        # 使用nn.Conv1d进行卷积操作，输出通道数为8，卷积核大小为9，步长为1，填充为4
+        nn.BatchNorm1d(8),
+        # 使用nn.BatchNorm1d进行归一化操作
+        nn.LeakyReLU(0.3, inplace=True),
+        # 使用nn.LeakyReLU作为激活函数进行非线性变换
+        nn.Conv1d(8, 16, 9, 1, 4),
+        nn.BatchNorm1d(16),
+        nn.LeakyReLU(0.3, inplace=True),
+        nn.Conv1d(16, 16, 9, 1, 4),
+        nn.BatchNorm1d(16),
+        nn.LeakyReLU(0.3, inplace=True),
+        nn.Conv1d(16, self.emotion_f, 9, 1, 4),
+        # 最后一层使用nn.Conv1d输出情感特征向量，通道数为self.emotion_f，卷积核大小为9，步长为1，填充为4
+        nn.BatchNorm1d(self.emotion_f),
+        nn.LeakyReLU(0.3, inplace=True),
+        # 使用nn.LeakyReLU作为激活函数进行非线性变换
+    )
+
+```
+
+具体4层：
+
+```python
+self.emotion_embedding_tail = nn.Sequential( 
+    nn.Conv1d(self.emotion_f, 8, 9, 1, 4), # 第一层卷积
+    nn.BatchNorm1d(8), # 第一层批量归一化
+    nn.LeakyReLU(0.3, inplace=True), # 第一层激活函数
+    nn.Conv1d(8, 16, 9, 1, 4), # 第二层卷积
+    nn.BatchNorm1d(16), # 第二层批量归一化
+    nn.LeakyReLU(0.3, inplace=True), # 第二层激活函数
+    nn.Conv1d(16, 16, 9, 1, 4), # 第三层卷积
+    nn.BatchNorm1d(16), # 第三层批量归一化
+    nn.LeakyReLU(0.3, inplace=True), # 第三层激活函数
+    nn.Conv1d(16, self.emotion_f, 9, 1, 4), # 第四层卷积
+    nn.BatchNorm1d(self.emotion_f), # 第四层批量归一化
+    nn.LeakyReLU(0.3, inplace=True), # 第四层激活函数
+)
+```
+
+这里包含了四层卷积神经网络 (Convolutional Neural Network, CNN)。CNN 的基本结构是由卷积层、激活函数、批量归一化层 (Batch Normalization, BN) 组成。这里的 `nn.Conv1d` 表示一维卷积层，第一个参数表示输入的通道数，即 `self.emotion_f`；第二个参数表示输出通道数，即 `8`、`16` 和 `self.emotion_f`；第三个参数表示卷积核的大小，即 `9`；第四个参数表示步长，即 `1`；第五个参数表示填充数，即 `4`。这里的 `nn.BatchNorm1d` 表示一维批量归
+
+
+
+**输入**
+
+情感编码器的输入是一个情感标签的one-hot编码向量，即`in_emo`。情感标签的维度为`emotion_dims`，也就是Embedding层的输入维度，因此Embedding层将one-hot向量映射为`emotion_f`维的实数向量表示。这个实数向量表示再通过一个1D卷积神经网络（Conv1d）进行进一步的特征提取和编码。
+
+<img src="毕设 捏人 bs+动作.assets/image-20230414122344433.png" alt="image-20230414122344433" style="zoom:50%;" />
+
 #### 3、Audio Encoder 音频编码器
 
 **Audio Encoder.** We adopt the raw wave representation of audio and downsample it to 16KHZ, considering audio as 15FPS, for each frame, we have vA belong to R1067.
@@ -1009,6 +1826,288 @@ MLP是神经网络中的一种基本结构，全称为多层感知机（Multi-La
 
 
 
+代码
+
+```python
+
+class WavEncoder(nn.Module):
+    def __init__(self, out_dim):
+        super().__init__() 
+        self.out_dim = out_dim
+        self.feat_extractor = nn.Sequential( 
+                BasicBlock(1, 32, 15, 5, first_dilation=1600, downsample=True),
+                BasicBlock(32, 32, 15, 6, first_dilation=0, downsample=True),
+                BasicBlock(32, 32, 15, 1, first_dilation=7, ),
+                BasicBlock(32, 64, 15, 6, first_dilation=0, downsample=True),
+                BasicBlock(64, 64, 15, 1, first_dilation=7),
+                BasicBlock(64, 128, 15, 6,  first_dilation=0,downsample=True),     
+            )
+        
+    def forward(self, wav_data):
+        wav_data = wav_data.unsqueeze(1) 
+        out = self.feat_extractor(wav_data)
+        return out.transpose(1, 2) 
+
+
+
+class PoseGenerator(nn.Module):
+    """
+    End2End model
+    audio, text and speaker ID encoder are customized based on Yoon et al. SIGGRAPH ASIA 2020
+    """
+    def __init__(self, args):
+        super().__init__()
+        self.pre_length = args.pre_frames 
+        self.gen_length = args.pose_length - args.pre_frames
+        self.pose_dims = args.pose_dims
+        self.facial_f = args.facial_f
+        self.speaker_f = args.speaker_f
+        self.audio_f = args.audio_f
+        self.word_f = args.word_f
+        self.emotion_f = args.emotion_f
+        self.facial_dims = args.facial_dims
+        self.speaker_dims = args.speaker_dims
+        self.emotion_dims = args.emotion_dims
+        
+        self.in_size = self.audio_f + self.pose_dims + self.facial_f + self.word_f + 1
+        self.audio_encoder = WavEncoder(self.audio_f)
+        self.hidden_size = args.hidden_size
+        self.n_layer = args.n_layer
+
+        if self.facial_f is not 0:  
+            self.facial_encoder = nn.Sequential( 
+                BasicBlock(self.facial_dims, self.facial_f//2, 7, 1, first_dilation=3,  downsample=True),
+                BasicBlock(self.facial_f//2, self.facial_f//2, 3, 1, first_dilation=1,  downsample=True),
+                BasicBlock(self.facial_f//2, self.facial_f//2, 3, 1, first_dilation=1, ),
+                BasicBlock(self.facial_f//2, self.facial_f, 3, 1, first_dilation=1,  downsample=True),   
+            )
+        else:
+            self.facial_encoder = None
+ 
+........
+    def forward(self, pre_seq, in_audio=None, in_facial=None, in_text=None, in_id=None, in_emo=None, is_test=False):
+        if self.do_flatten_parameters:
+            self.LSTM.flatten_parameters()
+
+        text_feat_seq = audio_feat_seq = None
+        if in_audio is not None:
+            audio_feat_seq = self.audio_encoder(in_audio) 
+        if in_text is not None:
+            text_feat_seq, _ = self.text_encoder(in_text)
+            assert(audio_feat_seq.shape[1] == text_feat_seq.shape[1])
+            .......
+        if  audio_feat_seq.shape[1] != pre_seq.shape[1]:
+            diff_length = pre_seq.shape[1] - audio_feat_seq.shape[1]
+            audio_feat_seq = torch.cat((audio_feat_seq, audio_feat_seq[:,-diff_length:, :].reshape(1,diff_length,-1)),1)
+       
+        if self.audio_f is not 0 and self.facial_f is 0:
+            in_data = torch.cat((pre_seq, audio_feat_seq), dim=2)
+        elif self.audio_f is not 0 and self.facial_f is not 0:
+            in_data = torch.cat((pre_seq, audio_feat_seq, face_feat_seq), dim=2)
+        else: pass
+........
+        output, _ = self.LSTM(in_data)
+        output = output[:, :, :self.hidden_size] + output[:, :, self.hidden_size:] 
+        output = self.out(output.reshape(-1, output.shape[2]))
+        decoder_outputs = output.reshape(in_data.shape[0], in_data.shape[1], -1)
+        return decoder_outputs
+```
+
+这段代码实现了一个包含音频、文本、面部表情等多种模态的多模态姿态生成模型，其原理是将不同的输入信息编码到一个中间特征表示中，再将该特征表示输入到循环神经网络（RNN）中，生成与输入相应的姿态。
+
+具体来说，代码中定义了两个模块，即`WavEncoder`和`PoseGenerator`，其中`WavEncoder`是音频编码器，将输入音频数据通过一系列卷积层提取出特征表示；而`PoseGenerator`则是多模态姿态生成器，接收音频、文本、面部表情等多种信息作为输入，并通过各自的编码器将它们转换为特征表示，将这些特征表示与预测序列的历史姿态序列拼接起来，然后通过循环神经网络（LSTM）生成未来的姿态序列。
+
+具体来看，代码中`WavEncoder`模块包含了一系列卷积层（`BasicBlock`），这些层的输入是音频数据，输出是音频的特征表示。其中，第一个卷积层使用了较大的卷积核和大的膨胀率（即卷积核中像素之间的距离）来捕捉长期的时间依赖关系，以提取较宽的频带信息。接下来的卷积层逐渐缩小卷积核和膨胀率，以提取更局部的特征。最终，经过一系列的卷积操作，将音频数据转换为时域上的特征表示。
+
+对于`PoseGenerator`模块，代码首先定义了几个输入的特征维度，包括音频、面部表情、文本、说话人ID、情感等，以及一些超参数，例如隐藏状态的维度、LSTM层数、输入的历史姿态序列长度等。随后，代码中定义了一个`audio_encoder`，用于将音频数据编码成特征表示。如果输入中包含面部表情信息，则定义一个面部表情编码器`facial_encoder`，将面部表情数据编码为特征表示。最后，代码将输入的不同信息拼接成一个张量，作为LSTM的输入，并通过LSTM生成未来的姿态序列。
+
+在`PoseGenerator`模块的`forward`函数中，代码首先将输入的音频数据送入`audio_encoder`中，获得音频的特征表示，然后将其与文本特征表示（如果有的话）拼接起来。接着，代码根据音频和预测姿态序列的长度，将音频的特征表示扩展到与姿态序列的长度相同。最后
+
+
+
+-------接下来解释PoseGenerator类中forward()函数的实现：
+
+首先，检查输入的in_audio、in_facial、in_text是否为None，如果不是，则分别将其通过预定义的网络模型（如WavEncoder、TextEncoder、FacialEncoder）进行编码，得到相应的音频特征序列（audio_feat_seq）、文本特征序列（text_feat_seq）、面部表情特征序列（face_feat_seq）。
+
+如果音频特征序列与pre_seq的长度不一致，则通过拼接音频特征序列末尾的若干帧来扩展其长度，使得两个序列长度相等。这是因为在序列到序列的任务中，需要预测一个固定长度的输出序列，因此需要保证输入序列的长度与输出序列的长度一致。
+
+根据输入特征是否包含音频特征和面部表情特征，将预处理过的pre_seq、audio_feat_seq、face_feat_seq进行拼接，得到输入数据in_data。
+
+最后，将in_data输入到预定义的LSTM模型中，得到LSTM输出的decoder_outputs。将decoder_outputs的形状从(batch_size, seq_length, output_size)变为(batch_size*seq_length, output_size)，再通过一个线性层进行映射，将其转化为(batch_size*seq_length, pose_dims)的输出，最后将其形状再变为(batch_size, seq_length, pose_dims)。这里的pose_dims即为输出的姿势维度。
+
+总的来说，这段代码实现了一个PoseGenerator类，用于将音频、文本、面部表情等多种输入特征转化为对应的姿势序列。其中，音频特征序列通过WavEncoder进行编码，面部表情特征序列通过FacialEncoder进行编码，而文本特征序列则通过TextEncoder进行编码。最后，将编码后的特征序列与预处理的姿势序列进行拼接，再通过LSTM模型进行处理，得到最终的输出姿势序列。
+
+
+
+$$p_{i}^{\mathrm{audio}}=E_{\mathrm{audio}}\left(e_{i-f}^{\mathrm{audio}},\ldots,e_{i+f}^{\mathrm{audio}};p_{i}^{\mathrm{text}};p_{i}^{\mathrm{emotion}};p_{i}^{\mathrm{speakerID}}\right)$$
+
+
+
+#### 4、面部表情编码器
+
+BEAT 采用 Iphone12Pro 录制谈话人的 52 维面部 blendsshape 权重
+
+
+
+![image-20230419221219315](毕设 捏人 bs+动作.assets/image-20230419221219315.png)
+
+$$p_{i}^{\mathrm{facial}}=E_{\mathrm{facial}}\left(e_{i-f}^{\mathrm{facial}},\ldots,e_{i+f}^{\mathrm{facial}};p_{i}^{\mathrm{text}};p_{i}^{\mathrm{emotion}};p_{i}^{\mathrm{speakerID}};p_{i}^{\mathrm{audio}}\right)$$
+
+
+
+$$p_{i}^{\mathrm{body}}=D_{\mathrm{body}}\left(p_{0}^{\mathrm{facial}}\otimes p_{0}^{\mathrm{text}}\otimes p_{0}^{\mathrm{emotion}}\otimes p_{0}^{\mathrm{speakerID}}\otimes p_{0}^{\mathrm{audio}}\otimes p_{0}^{\mathrm{facial}}\otimes e_{0}^{\mathrm{body}}\otimes e_{0}^{\mathrm{hand}},\ldots,p_{1}^{\mathrm{facial}}\otimes p_{1}^{\mathrm{text}}\otimes p_{1}^{\mathrm{emotion}}\otimes p_{1}^{\mathrm{speakerID}}\otimes p_{1}^{\mathrm{audio}}\otimes p_{1}^{\mathrm{facial}}\otimes e_{1}^{\mathrm{body}}\otimes e_{1}^{\mathrm{hand}}\right)$$
+
+
+
+$$p_{i}^{\mathrm{hand}}=D_{\mathrm{hand}}\left(p_{0}^{\mathrm{facial}}\otimes p_{0}^{\mathrm{text}}\otimes p_{0}^{\mathrm{emotion}}\otimes p_{0}^{\mathrm{speakerID}}\otimes p_{0}^{\mathrm{audio}}\otimes p_{0}^{\mathrm{facial}}\otimes e_{0}^{\mathrm{body}}\otimes e_{0}^{\mathrm{hand}},\ldots,p_{1}^{\mathrm{facial}}\otimes p_{1}^{\mathrm{text}}\otimes p_{1}^{\mathrm{emotion}}\otimes p_{1}^{\mathrm{speakerID}}\otimes p_{1}^{\mathrm{audio}}\otimes p_{1}^{\mathrm{facial}}\otimes e_{1}^{\mathrm{body}}\otimes e_{1}^{\mathrm{hand}};p_{i}^{\mathrm{body}}\right)$$
+
+请结合以下代码和其对应的论文<BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis>结合论文告诉我哪里面部表情编码器实现了什么，从哪里的代码看出来的：
+
+```python
+
+class PoseGenerator(nn.Module):
+    """
+    End2End model
+    audio, text and speaker ID encoder are customized based on Yoon et al. SIGGRAPH ASIA 2020
+    """
+    def __init__(self, args):
+        super().__init__()
+        self.pre_length = args.pre_frames 
+        self.gen_length = args.pose_length - args.pre_frames
+        self.pose_dims = args.pose_dims
+        self.facial_f = args.facial_f
+        self.speaker_f = args.speaker_f
+        self.audio_f = args.audio_f
+        self.word_f = args.word_f
+        self.emotion_f = args.emotion_f
+        self.facial_dims = args.facial_dims
+        self.speaker_dims = args.speaker_dims
+        self.emotion_dims = args.emotion_dims
+        
+        self.in_size = self.audio_f + self.pose_dims + self.facial_f + self.word_f + 1
+        self.audio_encoder = WavEncoder(self.audio_f)
+        self.hidden_size = args.hidden_size
+        self.n_layer = args.n_layer
+
+        if self.facial_f is not 0:  
+            self.facial_encoder = nn.Sequential( 
+                BasicBlock(self.facial_dims, self.facial_f//2, 7, 1, first_dilation=3,  downsample=True),
+                BasicBlock(self.facial_f//2, self.facial_f//2, 3, 1, first_dilation=1,  downsample=True),
+                BasicBlock(self.facial_f//2, self.facial_f//2, 3, 1, first_dilation=1, ),
+                BasicBlock(self.facial_f//2, self.facial_f, 3, 1, first_dilation=1,  downsample=True),   
+            )
+        else:
+            self.facial_encoder = None
+        self.LSTM = nn.LSTM(self.in_size, hidden_size=self.hidden_size, num_layers=args.n_layer, batch_first=True,
+                          bidirectional=True, dropout=args.dropout_prob)
+        self.out = nn.Sequential(
+            nn.Linear(self.hidden_size, self.hidden_size//2),
+            nn.LeakyReLU(True),
+            nn.Linear(self.hidden_size//2, 27)
+        )
+        
+        self.LSTM_hands = nn.LSTM(self.in_size+27, hidden_size=self.hidden_size, num_layers=args.n_layer, batch_first=True,
+                          bidirectional=True, dropout=args.dropout_prob)
+        self.out_hands = nn.Sequential(
+            nn.Linear(self.hidden_size, self.hidden_size//2),
+            nn.LeakyReLU(True),
+            nn.Linear(self.hidden_size//2, 141-27)
+        )
+
+        self.do_flatten_parameters = False
+        if torch.cuda.device_count() > 1:
+            self.do_flatten_parameters = True
+            
+
+    def forward(self, pre_seq, in_audio=None, in_facial=None, in_text=None, in_id=None, in_emo=None, is_test=False):
+        if self.do_flatten_parameters:
+            self.LSTM.flatten_parameters()
+
+        if self.facial_f is not 0:
+            face_feat_seq = self.facial_encoder(in_facial.permute([0, 2, 1]))
+            face_feat_seq = face_feat_seq.permute([0, 2, 1])
+        speaker_feat_seq = None
+
+        output, _ = self.LSTM(in_data)
+        output = output[:, :, :self.hidden_size] + output[:, :, self.hidden_size:] 
+        output = self.out(output.reshape(-1, output.shape[2]))
+        decoder_outputs = output.reshape(in_data.shape[0], in_data.shape[1], -1)
+        return decoder_outputs
+    
+
+    
+
+class CaMN(PoseGenerator):
+    def __init__(self, args):
+        super().__init__(args) 
+        self.audio_fusion_dim = self.audio_f+self.speaker_f+self.emotion_f+self.word_f
+        self.facial_fusion_dim = self.audio_fusion_dim + self.facial_f
+        self.audio_fusion = nn.Sequential(
+            nn.Linear(self.audio_fusion_dim, self.hidden_size//2),
+            nn.LeakyReLU(True),
+            nn.Linear(self.hidden_size//2, self.audio_f),
+            nn.LeakyReLU(True),
+        )
+        
+        self.facial_fusion = nn.Sequential(
+            nn.Linear(self.facial_fusion_dim, self.hidden_size//2),
+            nn.LeakyReLU(True),
+            nn.Linear(self.hidden_size//2, self.facial_f),
+            nn.LeakyReLU(True),
+        )
+        
+    def forward(self, pre_seq, in_audio=None, in_facial=None, in_text=None, in_id=None, in_emo=None):
+        if self.do_flatten_parameters:
+            self.LSTM.flatten_parameters()
+            
+        decoder_hidden = decoder_hidden_hands = None
+        text_feat_seq = audio_feat_seq = speaker_feat_seq = emo_feat_seq = face_feat_seq =  None
+        in_data = None
+        if self.facial_f is not 0:
+            face_feat_seq = self.facial_encoder(in_facial.permute([0, 2, 1]))
+            face_feat_seq = face_feat_seq.permute([0, 2, 1])
+            if (audio_feat_seq.shape[1] != face_feat_seq.shape[1]):
+                min_gap_2 = face_feat_seq.shape[1] - audio_feat_seq.shape[1]
+                if min_gap_2 > 0:
+                    face_feat_seq = face_feat_seq[:,:audio_feat_seq.shape[1], :]
+                else:
+                    face_feat_seq = torch.cat((face_feat_seq, face_feat_seq[:,-min_gap_2:, :]),1)
+                
+            face_fusion_seq = self.facial_fusion(torch.cat((face_feat_seq, audio_feat_seq, emo_feat_seq, speaker_feat_seq, text_feat_seq), dim=2).reshape(-1, self.facial_fusion_dim))
+            face_feat_seq = face_fusion_seq.reshape(*face_feat_seq.shape)
+            in_data = torch.cat((in_data, face_feat_seq), 2) if in_data is not None else face_feat_seq
+            
+            
+        in_data = torch.cat((pre_seq, in_data), dim=2)
+        output, _ = self.LSTM(in_data)
+        output = output[:, :, :self.hidden_size] + output[:, :, self.hidden_size:] 
+        output = self.out(output.reshape(-1, output.shape[2]))
+        decoder_outputs = output.reshape(in_data.shape[0], in_data.shape[1], -1)
+        
+        in_data = torch.cat((in_data, decoder_outputs), dim=2)
+        output_hands, _ = self.LSTM_hands(in_data)
+        output_hands = output_hands[:, :, :self.hidden_size] + output_hands[:, :, self.hidden_size:]
+        output_hands = self.out_hands(output_hands.reshape(-1, output_hands.shape[2]))
+        decoder_outputs_hands = output_hands.reshape(in_data.shape[0], in_data.shape[1], -1)
+        
+        decoder_outputs_final = torch.zeros((in_data.shape[0], in_data.shape[1], 141)).cuda()
+        decoder_outputs_final[:, :, 0:18] = decoder_outputs[:, :, 0:18]
+        decoder_outputs_final[:, :, 18:75] = decoder_outputs_hands[:, :, 0:57]
+        decoder_outputs_final[:, :, 75:84] = decoder_outputs[:, :, 18:27]
+        decoder_outputs_final[:, :, 84:141] = decoder_outputs_hands[:, :, 57:114]
+        return decoder_outputs_final
+
+```
+
+根据这段代码，我们可以看到面部表情编码器是一个包含四个基本块（BasicBlock）的序列模型。这些基本块具有不同的输入维度、输出维度、卷积核大小、步幅、扩张率等参数。在实现中，第一个基本块具有更大的扩张率和下采样，而其他三个基本块具有较小的扩张率和下采样。这些基本块可以看作是卷积、批归一化和ReLU激活函数的组合，并且使用了残差连接来帮助网络更好地学习特征。在CaMN模型中，面部表情编码器将与其他编码器一起被融合，以获取多模态输入并生成姿势输出。
+
+
+
+该代码实现了一个基本的ResNet块，用于卷积神经网络的构建。这个块包含两个卷积层和一个可选的下采样层，这些层通过残差连接连接在一起，以使网络能够更好地训练。该块还支持批标准化、激活函数、残差连接、下采样等操作，以提高模型的性能。
+
+该代码的论文是 "BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis"。这个论文描述了一个用于生成对话手势的多模态数据集，旨在提高人机交互的自然度和效率。该数据集中的手势被标注为情感和语义信息，可以帮助研究人员更好地理解和建模人类的非语言交流行为。这个基本的ResNet块可能是在处理这个数据集时使用的一个组件，以帮助学习手势生成模型中的语义和情感信息。
+
+
 #### 4、身体与手势解码器
 
 **Body and Hands Decoders.** We implement the body and hands decoders in a separated, cascaded structure, which is based on [39] conclusion that the body gestures can be used to estimate hand gestures. These two decoders, *D*B and *D*F are based on the LSTM structure for latent feature extraction and 2-layer MLP for gesture reconstruction.
@@ -1019,6 +2118,8 @@ MLP是神经网络中的一种基本结构，全称为多层感知机（Multi-La
 
 
 
+$$\hat{\mathbf{e}}^{\mathrm{Body}}=M L P_{\mathrm{Body}}\left(\mathbf{p}^{\mathrm{body}}\right), \hat{\mathbf{e}}^{\mathrm{Hand}}=M L P_{\mathrm{Hand}}\left(\mathbf{p}^{\mathrm{hand}}\right)$$
+
 They would combine the features of five modalities with previous gestures, *i.e.*, seed pose, to synthesis latent gesture
 
 featuress **z**B ∈R256 and **z**H  ∈	R256 
@@ -1026,6 +2127,22 @@ featuress **z**B ∈R256 and **z**H  ∈	R256
 他们会将五种模态的特征和之前的手势（即种子姿势）结合起来，来合成潜在手势。这些特征用向量 **z**B （256维度） 和 **z**H （256维度） 表示。
 
 
+
+
+
+该代码段为身体与手势解码器的代码，属于论文<BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis>的代码部分。其中使用的是 CaMN（Conversational audio-visual Modelling Network）模型。该模型将音频、面部、身体等多模态信息集成在一起进行建模，以生成连贯的对话手势。在该代码段中，CaMN模型的身体与手势解码器被定义为名为"CaMN"的类。解码器的构成部分包括"audio_fusion"和"facial_fusion"，分别是将音频特征和面部特征融合到中间隐藏层的两个全连接层。解码器还包括一个LSTM层（self.LSTM）和一个用于手势生成的另一个LSTM层（self.LSTM_hands），以及两个全连接层，即"out"和"out_hands"。在模型的前向传播（forward）函数中，模型使用音频、面部、身体等多模态信息来生成连贯的对话手势。
+
+
+
+其中音频、说话者、情感和单词特征会进行融合，融合后的特征会输入到音频和面部表情编码器中进行特征提取，提取出的特征会再次进行融合，最后融合后的特征和前一时刻的姿势特征一起输入到LSTM中进行训练，得到手势的预测结果。
+
+
+
+在这段代码中，我们可以看到在`forward()`函数中使用了`self.LSTM()`和`self.LSTM_hands()`，这是使用LSTM结构的明显指示。 
+
+在这两个LSTM中，输入的数据包括先前的序列`pre_seq`和不同类型的特征，例如语音特征`in_audio`，面部特征`in_facial`，文本特征`in_text`等。这些特征首先被处理成符合模型的形状和尺寸，然后通过`torch.cat()`函数连接到一起。在拼接完成之后，它们被送入LSTM中。这个过程会重复进行，以便LSTM可以逐个时间步骤处理数据序列。 
+
+因此，这段代码中的两个`self.LSTM()`和`self.LSTM_hands()`是使用LSTM结构的明显指示。
 
 #### 5、损失函数
 
@@ -1044,6 +2161,38 @@ where β0 and β1 are predefifined weight for L1 and adversarial loss. When sema
 我们网络的最终监督是基于手势重构和对抗损失函数。
 
 ![image-20230403144430463](毕设 捏人 bs+动作.assets/image-20230403144430463.png)
+
+
+
+$$\ell_{\mathrm{Gesture~Rec.}}=\mathbb{E}\left[\left\|\mathbf{v}^B-\hat{\mathbf{v}}^B\right\|_1\right]+\alpha\mathbb{E}\left\lbrack\left\lVert\mathbf{v}^H-\hat{{\mathbf{v}}}^H\right\rVert_1\right],\quad$$
+
+$$\mathcal{L}_{L_{1}}=\mathbb{E}\left[\left\|\mathbf{v}^B-\hat{\mathbf{v}}^B\right\|_1\right]+\alpha\mathbb{E}\left\lbrack\left\lVert\mathbf{v}^H-\hat{{\mathbf{v}}}^H\right\rVert_1\right],\quad$$
+
+
+
+$$\mathcal{L}_{L_{1}}(Body)=\mathbb{E}\left[\left\|\mathbf{e}^{Body}-\hat{\mathbf{e}}^{Body}\right\|_1\right]$$
+
+$$\mathcal{L}_{L_{1}}(Hand)=\mathbb{E}\left[\left\|\mathbf{e}^{Hand}-\hat{\mathbf{e}}^{Hand}\right\|_1\right]$$
+
+$$\mathcal{L}_{L_{1}}=\mathcal{L}_{L_{1}}(Body)+\mathcal{L}_{L_{1}}(Hand)$$
+
+
+
+
+
+$$\mathcal{L}_{L_{1}}=-\mathbb E[\log(Dis(\hat{\mathbf v}^B;\hat{\mathbf v}^H))],$$
+
+$$\mathcal{L}^{GAN}_{D}=-\mathbb E[\log(D(\hat{\mathbf e}^{Body};\hat{\mathbf e}^{Hand}))],$$
+
+
+
+$$\mathcal{L}=\alpha_1\mathcal{L}^{GAN}_{D}+\beta\alpha_0\mathcal{L}_{L_{1}}$$
+
+
+
+
+
+$$\mathcal{L}_{L_{1}}(G)=\mathbb{E}_{x, s \sim p_{\text {data }}(x, s), z \sim p_{z}(z)}\left[\|y-G(x, s, z)\|_{1}\right]$$
 
 在对抗训练的鉴别器输入中，只有手势本身。我们还采用了一个权重来平衡身体和手部的惩罚。在训练过程中，我们使用语义相关性标签*λ*调整 L1 损失和对抗损失的权重。最终的损失函数为：
 
@@ -1068,6 +2217,171 @@ L1损失（也称为L1范数损失或平均绝对误差）是一种用于衡量�
 ==对抗损失==：而对抗损失则是通过训练一个鉴别器模型来鼓励生成的手势==越来越难以被鉴别器区分出来==，从而提高生成器模型的生成能力和真实感。这两种损失函数的作用相互协作，共同用于优化网络的训练过程，提高生成手势的质量和逼真度。
 
 
+
+##### 代码与介绍
+
+损失函数代码模块
+
+c![image-20230418183629249](毕设 捏人 bs+动作.assets/image-20230418183629249.png)
+
+###### MAE（L1）
+
+1、什么是MAE
+MAE(mean absolute error)，即平均绝对值误差，也可以看做L1损失，是一种用于回归模型的常用损失函数。MAE是目标值和预测值之差的绝对值之和。其只衡量了预测值误差的平均模长，而不考虑方向，取值范围也是从0到正无穷（如果考虑方向，则是残差/误差的总和——平均偏差（MBE））。MAE计算公式如下：
+
+​                                               ![image-20230418185346743](毕设 捏人 bs+动作.assets/image-20230418185346743.png)  
+
+下图是MAE函数的图像，其中目标值是100，预测值的范围从-10000到10000，Y轴代表的MAE取值范围是从0到正无穷，并且在预测值为100处达到最小。通过数值模拟，平均绝对值误差的形状如下：
+
+
+
+绝对值损失（L1）![L(a)=|a|](毕设 捏人 bs+动作.assets/a9af7b2850a6adece6066ce81077954d.png)
+
+https://blog.csdn.net/qq_42189083/article/details/105811405
+
+###### MSE（L2）
+
+MSE(mean squared error)，即均方误差，可以看做是一种L2损失，也是一种最常用的回归损失函数。MSE是求预测值与真实值之间距离的平方和。MSE的计算公式如下：
+
+​                                                 ![image-20230418185439646](毕设 捏人 bs+动作.assets/image-20230418185439646.png)      
+
+下图是MSE函数的图像，其中目标值是100，预测值的范围从-10000到10000，Y轴代表的MSE取值范围是从0到正无穷，并且在预测值为100处达到最小。通过数值模拟，平均绝对值误差的形状如下：
+
+
+平方损失（L2），![L(a) = a^2](毕设 捏人 bs+动作.assets/519702de7053667f2df0d8fce45f4cd6.png)，
+
+```python
+lass L2Loss(nn.Module):
+    def __init__(self):
+        super(L2Loss, self).__init__()
+    
+    def forward(self, outputs, targets):
+        final_loss = F.l2_loss(outputs, targets)
+        return final_loss    
+```
+
+
+
+###### BCE
+
+https://blog.csdn.net/Just_do_myself/article/details/123393900
+
+```python
+class BCE_Loss(nn.Module):
+    def __init__(self, args=None):
+        super(BCE_Loss, self).__init__()
+       
+    def forward(self, fake_outputs, real_target):
+        final_loss = F.cross_entropy(fake_outputs, real_target, reduce="mean")
+        return final_loss
+```
+
+图像[二分类问题](https://so.csdn.net/so/search?q=二分类问题&spm=1001.2101.3001.7020)—>多标签分类
+
+**图像二分类问题**
+
+二分类是每个AI初学者接触的问题，例如猫狗分类、垃圾邮件分类…在二分类中，我们只有两种样本（正样本和负样本），一般正样本的标签y=1，负样本的标签y=0。比如下边这张图片，判断里边有没有人。
+
+图1有人
+
+那么这张图片的标签为y=1，这时我们就根据标签y=1来设计模型的输出就行了。因为二分类只有正样本和负样本，并且两者的概率之和为1，所以不需要预测一个向量，只需要输出一个概率值就好了。损失函数一般是输出经过sigmoid激活函数之后，采用交叉熵损失函数计算LOSS，即
+
+![image-20230418184247422](毕设 捏人 bs+动作.assets/image-20230418184247422.png)
+
+其中p(x)是模型输出，y是真实标签。
+
+**多标签分类**
+
+多标签分类任务的损失函数BCE
+现在我换一个问题，这张图片中有没有人，有没有手机（多标签分类），那这时的标签就有四种情况了：
+
+标签	含义
+(0, 0)	图中既没人，也没手机
+(0, 1)	图中没人，但是有手机
+(1, 0)	图中有人，但是没手机
+(1, 1)	图中既有人，也有手机
+以此类推
+
+很明显，问题已经由普通的二分类变成了多标签分类。多标签分类问题的输出和损失函数应该怎么定义呢？
+因为多标签分类中有多个类别，不能单纯的输出一个值，而是应该输出一个向量，并且也不能继续将输出简单的用Softmax归一化到[0, 1]的概率值，且各类别的概率相加为1。**因为各类别之间不是互斥的，允许同时出现。**我们可以用sigmoid激活函数分别将输出向量的每个元素转换为概率值。
+![image-20230418184442467](毕设 捏人 bs+动作.assets/image-20230418184442467.png)
+
+
+
+###### HuberLoss
+
+```python
+class HuberLoss(nn.Module):
+    def __init__(self, beta=0.1, reduction="mean"):
+        super(HuberLoss, self).__init__()
+        self.beta = beta
+        self.reduction = reduction
+    
+    def forward(self, outputs, targets):
+        final_loss = F.smooth_l1_loss(outputs / self.beta, targets / self.beta, reduction=self.reduction) * self.beta
+        return final_loss
+    
+```
+
+ https://www.cnblogs.com/ettie999/p/8326233.html
+
+这个函数对于小的a值误差函数是二次的，而对大的值误差函数是线性的。变量a表述residuals，用以描述观察值与预测值之差：![a = y - f(x)](毕设 捏人 bs+动作.assets/4afa6a8a79a68604202e5ca1f0ae5c7d.png)，因此我们可以将上面的表达式写成下面的形式：
+
+![img](毕设 捏人 bs+动作.assets/Center.png)
+
+ 
+
+![img](毕设 捏人 bs+动作.assets/Center-16818150503073.png)
+
+Huber loss (green, ![\delta=1](毕设 捏人 bs+动作.assets/1428d94a85a58b8e631bf8419053a5bf.png)) and squared error loss (blue) as a function of ![y - f(x)](毕设 捏人 bs+动作.assets/1a98bd7818facb837d8006feb6efd191.png)
+
+m我感觉有点像阈值内L2、阈值外L1
+
+
+
+###### KLD / KLDiv
+
+应该也是KLDivLoss吧
+
+![image-20230418190723999](毕设 捏人 bs+动作.assets/image-20230418190723999.png)
+
+```python
+class KLDLoss(nn.Module):
+    def __init__(self, beta=0.1):
+        super(KLDLoss, self).__init__()
+        self.beta = beta
+    
+    def forward(self, outputs, targets):
+        final_loss = F.smooth_l1_loss((outputs / self.beta, targets / self.beta) * self.beta)
+        return final_loss
+```
+
+
+
+###### RGE/ regression 回归损失 
+
+```python
+class REGLoss(nn.Module):
+    def __init__(self, beta=0.1):
+        super(REGLoss, self).__init__()
+        self.beta = beta
+    
+    def forward(self, outputs, targets):
+        final_loss = F.smooth_l1_loss((outputs / self.beta, targets / self.beta) * self.beta)
+        return final_loss    
+```
+
+上面L1 huber什么的都是回归损失?不知道这个是啥。。。
+
+
+
+###### torch函数----smooth_l1_loss
+
+```
+smooth_l1_loss
+```
+
+![image-20230418191036280](毕设 捏人 bs+动作.assets/image-20230418191036280.png)
 
 #### 6、实验
 
@@ -1119,7 +2433,13 @@ L1损失（也称为L1范数损失或平均绝对误差）是一种用于衡量�
 
 /BEAT/audio2pose/codes/audio2pose/BEAT/dataloaders
 
+转textgrid：
 
+https://blog.csdn.net/zhulinniao/article/details/108754112
+
+
+
+![image-20230425134325413](毕设 捏人 bs+动作.assets/image-20230425134325413.png)
 
 ### 4、阅读代码
 
@@ -1128,6 +2448,75 @@ L1损失（也称为L1范数损失或平均绝对误差）是一种用于衡量�
 
 
 你好，参考文献论文《BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis》，我看了这个论文提供的的github代码，但是在数据处理这个代码这里看不太懂，你能给我解释以下这个代码具体在干嘛吗，越详细越好，并且能否帮我加一些注释且把它原来的注释改为中文呢，谢谢
+
+
+
+Camn
+
+助手
+
+这段代码实现了一个名为CaMN的类，继承了PoseGenerator类。主要功能是通过融合不同的输入信息生成姿态动作的序列。下面逐行注释：
+
+```python
+pythonCopy codeclass CaMN(PoseGenerator):
+    def __init__(self, args):
+        super().__init__(args) 
+        # 继承父类构造函数
+
+        # 定义音频融合的输入维度，包括音频、说话人特征、情感特征、文本特征
+        self.audio_fusion_dim = self.audio_f+self.speaker_f+self.emotion_f+self.word_f
+
+        # 定义面部融合的输入维度，包括音频融合后的特征、面部特征
+        self.facial_fusion_dim = self.audio_fusion_dim + self.facial_f
+
+        # 定义音频融合和面部融合的模块
+        self.audio_fusion = nn.Sequential(
+            nn.Linear(self.audio_fusion_dim, self.hidden_size//2),
+            nn.LeakyReLU(True),
+            nn.Linear(self.hidden_size//2, self.audio_f),
+            nn.LeakyReLU(True),
+        )
+        self.facial_fusion = nn.Sequential(
+            nn.Linear(self.facial_fusion_dim, self.hidden_size//2),
+            nn.LeakyReLU(True),
+            nn.Linear(self.hidden_size//2, self.facial_f),
+            nn.LeakyReLU(True),
+        )
+
+    # 定义前向传递过程，输入包括上一时刻的姿态序列、音频、面部、文本、说话人、情感特征
+    def forward(self, pre_seq, in_audio=None, in_facial=None, in_text=None, in_id=None, in_emo=None):
+
+        # 拉直参数，防止内存溢出
+        if self.do_flatten_parameters:
+            self.LSTM.flatten_parameters()
+
+        # 初始化解码器隐层状态
+        decoder_hidden = decoder_hidden_hands = None
+
+        # 初始化特征序列
+        text_feat_seq = audio_feat_seq = speaker_feat_seq = emo_feat_seq = face_feat_seq =  None
+        in_data = None
+
+        # 添加说话人特征
+        if self.speaker_embedding: 
+            speaker_feat_seq = self.speaker_embedding(in_id)
+            if len(speaker_feat_seq.shape) == 2:
+                speaker_feat_seq = speaker_feat_seq.reshape(1, speaker_feat_seq.shape[1], speaker_feat_seq.shape[0])
+            speaker_feat_seq = speaker_feat_seq.repeat(1, pre_seq.shape[1], 1)
+            in_data = torch.cat((in_data, speaker_feat_seq), 2) if in_data is not None else speaker_feat_seq
+
+        # 添加情感特征
+        if self.emotion_embedding:
+            emo_feat_seq = self.emotion_embedding(in_emo)
+            emo_feat_seq = emo_feat_seq.permute([0,2,1])
+            emo_feat_seq = self.emotion_embedding_tail(emo_feat_seq) 
+            emo_feat_seq = emo_feat_seq.permute([0,2,1])
+            in_data = torch.cat((in_data, emo_feat_seq), 2) if in_data is not None else emo_feat_seq
+            
+        # 添加文本特征
+        if in_text is not None:
+            text_feat_seq,
+```
 
 
 
@@ -2292,29 +3681,327 @@ for speaker_id in tqdm([2,4,6,8]):
 
 
 
+#### test.py
+
+这是一段Python代码，主要功能是将一系列bvh文件中的姿势数据转换为目标姿势，并将结果保存到指定路径。以下是对这段代码的逐行注释和说明：
+
+```Python
+def result2target_vis(pose_version, res_bvhlist, save_path, demo_name, verbose=True):
+```
+- 这是一个Python函数定义，名为result2target_vis，包含四个参数：pose_version、res_bvhlist、save_path和demo_name。verbose参数默认为True。
+
+```Python
+    if "trinity" in pose_version:
+        ori_list = joints_list[pose_version[6:-4]] 
+        target_list = joints_list[pose_version[6:]] 
+        file_content_length = 336 
+    elif "beat" in pose_version or "spine_neck_141" in pose_version:
+        ori_list = joints_list["beat_joints"]
+        target_list = joints_list["spine_neck_141"]
+        file_content_length = 431
+    else:
+        pass
+```
+- 这是一个if-elif-else语句块，根据pose_version参数的不同取值分别设置ori_list、target_list和file_content_length参数的值。
+- 若pose_version中包含"trinity"字符串，则ori_list和target_list分别为joints_list中下标为[6:-4]和[6:]的值，file_content_length为336。
+- 若pose_version中包含"beat"字符串或"spine_neck_141"字符串，则ori_list和target_list分别为joints_list中"beat_joints"和"spine_neck_141"的值，file_content_length为431。
+
+```Python
+    bvh_files_dirs = sorted(glob.glob(f'{res_bvhlist}*.bvh'), key=str)
+    print("res_bvhlist--" + bvh_files_dirs)
+    print("bvh_files_dirs--"+bvh_files_dirs)
+    counter = 0
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+    for i, bvh_file_dir in enumerate(bvh_files_dirs):
+        short_name = bvh_file_dir.split("/")[-1][11:]
+        print("short_name--" + short_name)
+        print(" wirte_file--" +  wirte_file)
+
+        #print(short_name)
+        wirte_file =  open(os.path.join(save_path, f'res_{short_name}'),'w+')
+```
+- 这里使用glob.glob函数获取所有以.bvh结尾的文件，并按照字符串排序。
+- 如果指定的save_path目录不存在，则创建该目录。
+- 然后遍历所有文件，对每个文件执行如下操作：
+    - 从bvh_file_dir中提取文件名的后缀，即short_name。
+    - 打开save_path目录下以"res_"和short_name为文件名的文件，模式为写入模式（'w+'）。
+    
+```Python
+        with open(f"{demo_name}{short_name}",'r') as pose_data_pre:
+            pose_data_pre_file = pose_data_pre.readlines()
+            for j, line in enumerate(pose_data_pre_file[0:file_content_length]):
+                    wirte_file.write(line)
+            #if file_content_length < len(pose_data_pre_file):# 新加 因为报错
+            offset_data = pose_data_pre_file[file_content_length]
+            offset_data
+```
+
+
+
+语法1
+
+../../outputs/audio2pose/custom/0419_123537_camn_beat_4english_15_141//9999\\result_raw_2_scott_0_111_111.bvh
+
+
+
+`short_name = bvh_file_dir.split("/")[-1][11:]`
+
+用 "/" 将字符串 `bvh_file_dir` 分割成多个子字符串，得到一个列表。
+
+2. 从列表中取出最后一个元素。
+3. 对该元素进行切片，取出从第11个字符开始到字符串末尾的子字符串。
+
+这样做的目的是从一个文件路径中提取出文件名（去除路径和文件扩展名），作为一个短字符串的标识符。
+
+举个例子，如果 `bvh_file_dir` 是 "/path/to/folder/example_file.bvh"，那么这行代码就会返回 "example_file"。
+
+
+
+语法2
+
+`self.test_data = __import__(f"dataloaders.{args.dataset}", fromlist=["something"]).CustomDataset(args, "test")是什么意思`
+
+
+
+这行代码是Python中的动态导入方式，可以根据 `args.dataset` 变量的值，动态地导入 `dataloaders` 模块下的对应模块，并调用其中的 `CustomDataset` 类来创建一个测试数据集。
+
+具体来说，这行代码的执行流程如下：
+
+1. `args.dataset` 是一个字符串类型的变量，表示要使用的数据集名称。
+2. `__import__` 是Python内置的函数，用于在运行时动态导入模块。`__import__(module, fromlist)` 中的 `module` 参数是要导入的模块名称，`fromlist` 参数是一个可选的列表，用于指定要导入的模块成员。在这里，`fromlist` 参数指定为 `["something"]`，意味着我们希望导入的模块中包含名为 `something` 的成员。
+3. 根据 `args.dataset` 的值，动态导入对应的模块，并将其赋值给 `self.test_data` 变量。这个模块中应该包含一个名为 `CustomDataset` 的类。
+4. 调用 `CustomDataset(args, "test")`，创建一个测试数据集对象。`args` 是一个命名空间对象，包含一些与数据集相关的参数，"test" 参数表示这是一个测试数据集对象。
+
+#### 时序图
+
+图0424/1659
+
+```mermaid
+sequenceDiagram
+	participant BaseTrainer
+	participant CaMN
+	participant PoseGenerator
+	participant TextEncoderTCN
+	participant WavEncoder
+	
+	BaseTrainer->>BaseTrainer:test(epoch)
+	BaseTrainer->>CaMN: init
+	CaMN->>PoseGenerator:init
+	PoseGenerator->>WavEncoder:init
+	PoseGenerator->>PoseGenerator:init facial_encoder
+	PoseGenerator->>TextEncoderTCN:init
+	PoseGenerator->>PoseGenerator:init speaker_embedding
+	PoseGenerator->>PoseGenerator:init emotion_embedding
+	PoseGenerator->>LSTM:init
+	BaseTrainer->>CaMN:model(self, pre_seq, in_audio, in_facial, in_text, in_id, in_emo)
+	CaMN->>TextEncoderTCN:text_encoder(in_text)
+	CaMN->>WavEncoder:audio_encoder(in_audio) 
+	CaMN->>CaMN:facial_encoder(in_facial)
+	CaMN->>CaMN:speaker_embedding(in_id)
+	CaMN->>CaMN:emotion_embedding(in_emo)
+	CaMN->>LSTM:LSTM(in_data)
+```
+
+
+
+
+
+
+
+图0424/1656
+
+
+
+```mermaid
+sequenceDiagram
+	participant BaseTrainer
+	participant CaMN
+	participant PoseGenerator
+	participant TextEncoderTCN
+	participant WavEncoder
+	
+	BaseTrainer->>BaseTrainer:test(epoch)
+	BaseTrainer->>CaMN: getattr(model_module, args.g_name)(args)
+	CaMN->>PoseGenerator:init
+	PoseGenerator->>WavEncoder:init
+	PoseGenerator->>PoseGenerator:init facial_encoder
+	PoseGenerator->>TextEncoderTCN:init
+	PoseGenerator->>PoseGenerator:init speaker_embedding
+	PoseGenerator->>PoseGenerator:init emotion_embedding
+	PoseGenerator->>LSTM:init
+	BaseTrainer->>HalfEmbeddingNet :init
+	HalfEmbeddingNet->>PoseDecoderConv :init
+	BaseTrainer->>CaMN:model(self, pre_seq, in_audio, in_facial, in_text, in_id, in_emo)
+	CaMN->>TextEncoderTCN:text_encoder(in_text)
+	CaMN->>WavEncoder:audio_encoder(in_audio) 
+	CaMN->>CaMN:facial_encoder(in_facial)
+	CaMN->>CaMN:speaker_embedding(in_id)
+	CaMN->>CaMN:emotion_embedding(in_emo)
+	CaMN->>LSTM:LSTM(in_data)
+```
+
+
+
+
+
+
+
+```
+sequenceDiagram
+	FaceBSTest->>FaceBSTest:Awake()
+	FaceBSTest->>FaceBSTest:Start()
+	FaceBSTest->>FaceBSTest:get_BS_to_Instance_Sliders()
+	FaceBSTest->>FaceBSTest:AddListener_to_Sliders()
+	
+```
+
+
+
+```
+sequenceDiagram
+	participant USER
+	# BSManager->>FaceBSTest:Start()
+	FaceBSTest->>FaceBSTest:Awake()
+	FaceBSTest->>FaceBSTest:Start()
+    loop:skinnedMeshRenderer.sharedMesh.blendShapeCount
+        FaceBSTest->>Slider:Instantiate(sliderPrefab, sliderParent)
+        FaceBSTest->>Slider:AddListener(OnBSSliderValueChanged(index))
+        FaceBSTest->>SkinnedMeshRenderer:GetBlendShapeName(index)
+	end
+	FaceBSTest->>TestEyeOrClothesBS:DrivenOtherBS() #其实是addlis 改个正式点的名
+	loop:sliderParent.childCount
+		TestEyeOrClothesBS->>Slider:AddListener(OnBSSliderValueChanged(index))
+	end
+	
+	# MotionManager->>MotionManager:Start() # changeAnim
+	# OnAnimatorIK(int layerindex)
+	CanvasEventHandler->>CanvasEventHandler:Start()
+	# CameraManager->>CameraManager:Start()# CameraSwitch
+	
+	USER->>Slider:通过UI更改Slider值
+	Slider->>FaceBSTest:OnBSSliderValueChanged(index)
+	FaceBSTest->>SkinnedMeshRenderer:SetBlendShapeWeight(index, bsSliders[index].value *400f-200f)
+	
+	Slider->>TestEyeOrClothesBS:OnBSSliderValueChanged(index)
+	TestEyeOrClothesBS->>SkinnedMeshRenderer:SetBlendShapeWeight(index, bsSliders[index].value *400f-200f)
+```
+
+
+
+unity时序图
+
+这个是使用bs进行人脸建模，人体建模和表情建模的部分逻辑
+
+```mermaid
+sequenceDiagram
+	participant USER
+	# BSManager->>FaceBSTest:Start()
+	FaceBSTest->>FaceBSTest:Awake()
+	FaceBSTest->>FaceBSTest:Start()
+    loop:skinnedMeshRenderer.sharedMesh.blendShapeCount
+        FaceBSTest->>Slider:Instantiate(sliderPrefab, sliderParent)
+        FaceBSTest->>Slider:AddListener(OnBSSliderValueChanged(index))
+        FaceBSTest->>SkinnedMeshRenderer:GetBlendShapeName(index)
+	end
+	FaceBSTest->>TestEyeOrClothesBS:DrivenOtherBS() #其实是addlis 改个正式点的名
+	loop:sliderParent.childCount
+		TestEyeOrClothesBS->>Slider:AddListener(OnBSSliderValueChanged(index))
+	end
+	
+	# MotionManager->>MotionManager:Start() # changeAnim
+	# OnAnimatorIK(int layerindex)
+	
+	# CanvasEventHandler->>CanvasEventHandler:Start()
+	# CameraManager->>CameraManager:Start()# CameraSwitch
+	
+	USER->>Slider:通过UI更改Slider值
+	Slider->>FaceBSTest:OnBSSliderValueChanged(index)
+	FaceBSTest->>SkinnedMeshRenderer:SetBlendShapeWeight(index, bsSliders[index].value *400f-200f)
+	
+	Slider->>TestEyeOrClothesBS:OnBSSliderValueChanged(index)
+	TestEyeOrClothesBS->>SkinnedMeshRenderer:SetBlendShapeWeight(index, bsSliders[index].value *400f-200f)
+```
+
+
+
+语音驱动口型的面部bs
+
+```
+sequenceDiagram
+	participant USER
+	USER->>CanvasEventHandler:用户通过UI选择测试用例
+	CanvasEventHandler->>BSChangeByAudio:初始化
+	
+	BSChangeByAudio->>BSChangeByAudio:ResetAllBS()
+    loop:skinnedMeshRenderer.sharedMesh.blendShapeCount
+        BSChangeByAudio->>SkinnedMeshRenderer:SetBlendShapeWeight(i, 0);
+	end
+	USER->>CanvasEventHandler:OnStartBtnClick()用户点击开始
+	CanvasEventHandler->>DrivenManager:启动一次测试
+	# CanvasEventHandler->>MotionManager:ChangeAnimPose(AudioIndex); # changeAnim  
+	DrivenManager->>RunMouthDrivenExe:RunExeFile(Audio) # RunDrivenExe、DrivenManager还没抽出来 现在放在CanvasEventHandler中
+	RunMouthDrivenExe-->>DrivenManager:返回语音驱动嘴型的BS数据
+	DrivenManager->>RunBodyDrivenExe:输入多模态数据
+	RunBodyDrivenExe-->>DrivenManager:返回多模态驱动手势动作的数据
+	
+	DrivenManager->>MotionManager:MotionDriven(TestIndex);
+	MotionManager->>MotionManager:mAnimator.SetInteger("animInd",TestIndex)
+	DrivenManager->>DrivenManager:mAudioSource.play()
+	
+	loop:digitalPeopleShape.Length
+		DrivenManager->>BSChangeByAudio:ChangeBSgroups(BSValuegroups)
+		loop:BSLength
+			BSChangeByAudio->>SkinnedMeshRenderer:SetBlendShapeWeight
+		end
+	end
+```
+
+
+
+
+
+```mermaid
+sequenceDiagram
+	participant USER
+	USER->>CanvasEventHandler:用户通过UI选择测试用例
+	CanvasEventHandler->>BSChangeByAudio:初始化
+	
+	BSChangeByAudio->>BSChangeByAudio:ResetAllBS()
+    loop:skinnedMeshRenderer.sharedMesh.blendShapeCount
+        BSChangeByAudio->>SkinnedMeshRenderer:SetBlendShapeWeight(i, 0);
+	end
+	USER->>CanvasEventHandler:OnStartBtnClick()用户点击开始
+	CanvasEventHandler->>DrivenManager:启动一次测试
+	# CanvasEventHandler->>MotionManager:ChangeAnimPose(AudioIndex); # changeAnim  
+	DrivenManager->>RunMouthDrivenExe:RunExeFile(Audio) # RunDrivenExe、DrivenManager还没抽出来 现在放在CanvasEventHandler中
+	RunMouthDrivenExe-->>DrivenManager:返回语音驱动嘴型的BS数据
+	DrivenManager->>RunBodyDrivenExe:输入多模态数据
+	RunBodyDrivenExe-->>DrivenManager:返回多模态驱动手势动作的数据
+	
+	DrivenManager->>MotionManager:MotionDriven(TestIndex);
+	MotionManager->>MotionManager:mAnimator.SetInteger("animInd",TestIndex)
+	DrivenManager->>DrivenManager:mAudioSource.play()
+	
+	loop:digitalPeopleShape.Length
+		DrivenManager->>BSChangeByAudio:ChangeBSgroups(BSValuegroups)
+		loop:BSLength
+			BSChangeByAudio->>SkinnedMeshRenderer:SetBlendShapeWeight
+		end
+	end
+```
+
 
 
 ### 5、毕业论文
 
 #### 时间安排
 
-4/6 列提纲 给老师看
+4/6 列提纲
 
-4/7写目录之类的
+4/7  √列提纲 给老师看   TODO:写初步目录
 
-
-
-#### 提纲
-
-
-
-题目：
-
-“基于数字人的多模态单向交互技术——语音驱动动作和捏人技术研究与应用”
-
-面向数字人应用的捏人系统与语音驱动手势动作
-
-
+4/7  √列提纲 给老师看   TODO:写初步目录
 
 
 
@@ -2340,25 +4027,17 @@ for speaker_id in tqdm([2,4,6,8]):
 
 理论研究
 
+#### 提纲
 
 
 
+题目：
+
+“基于数字人的多模态单向交互技术——多模态驱动动作和捏人技术研究与应用”
+
+**面向数字人应用的人体建模与多模态驱动手势动作生成**
 
 
-
-
-
-能给我列一个本科毕业论文的提纲吗，这是我的论文大致内容：
-
-捏人模块包括实现捏脸、捏表情和捏体型，语音驱动动作模块包括实现输入语音文件，输出语音对应的姿态动画，即通过语音驱动动作。动画模块包括动画模块实现各种资产适应数字人动作并结合捏人系统。其中语音驱动动作模块参考论文《BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis》
-
-
-
-
-
-
-
-本科毕业论文提纲：
 
 I. 绪论
 
@@ -2367,41 +4046,604 @@ I. 绪论
 - 研究目的和意义
 - 论文结构
 
-II. 相关技术与理论
+II.  人体建模系统的设计与实现
 
-- 数字人相关技术
-- 捏人模块实现技术
-- 语音驱动动作模块实现技术
-- 动画模块实现技术
-- BEAT数据集介绍
+- 引言
+- 基于blendshape与骨骼的人体建模
+  - 基于BS与LBS人体建模的方法
+  - 基于骨骼人体建模的方法
+- 实验结果与分析
+	- 人脸建模功能实现
+	- 表情建模功能实现
+	- 体型建模功能实现
 
-III. 捏人模块的设计与实现
+III. 多模态驱动手势动作生成模块的设计与实现
 
-- 捏脸功能实现
-- 捏表情功能实现
-- 捏体型功能实现
+- 引言
+- 基于CaMN网络与BEAT数据集的多模态驱动手势动作生成
+  - 网络结构（编码器与解码器）
+  - 损失函数
 
-IV. 语音驱动动作模块的设计与实现
+- 实验结果与分析
 
-- 输入语音文件处理
-- 姿态动画生成算法
-- 语音驱动动作实现细节
+IV. 动作模块的应用
 
-V. 动画模块的设计与实现
+- 引言
 
-- 资产适应数字人动作
-- 捏人系统与动画模块的结合
+- 应用于unity的数字人动作模块
 
-VI. 实验设计与结果分析
+  - 多模态驱动生成的手势动作应用
 
-- 设计实验方案
-- 数据采集与处理
-- 结果展示与分析
+  - 动作模块单向交互
 
-VII. 总结与展望
+- 实验结果与分析
+
+V. 总结与展望
 
 - 研究工作总结
 - 不足之处与改进方向
 - 发展前景与应用价值
 
 参考文献
+
+
+
+#### 初步目录
+
+**面向数字人应用的人体建模与多模态驱动手势动作生成**
+
+I. 绪论
+
+- 研究背景和意义
+- 国内外研究现状及不足之处
+- 研究目的和意义
+- 论文结构
+
+II.  人体建模系统的设计与实现
+
+- 引言
+- 基于blendshape与骨骼的人体建模
+  - 基于BS与LBS人体建模的方法
+  - 基于骨骼人体建模的方法
+- 实验结果与分析
+  - 人脸建模功能实现
+  - 表情建模功能实现
+  - 体型建模功能实现
+
+III. 多模态驱动手势动作生成模块的设计与实现
+
+- 引言
+- 基于CaMN网络与BEAT数据集的多模态驱动手势动作生成
+  - 网络结构（编码器与解码器）
+  - 损失函数
+
+- 实验结果与分析
+
+IV. 动作模块的应用
+
+- 引言
+
+- 应用于unity的数字人动作模块
+
+  - 多模态驱动生成的手势动作应用
+
+  - 动作模块单向交互
+
+- 实验结果与分析
+
+V. 总结与展望
+
+- 研究工作总结
+- 不足之处与改进方向
+- 发展前景与应用价值
+
+参考文献
+
+##### 英文目录
+
+写在文档英文目录中，后面更新页码后再把英文粘贴过去
+
+
+
+#### 参考文献
+
+**自动更新：**
+
+**https://www.sohu.com/a/400860085_120462441**
+
+
+
+![image-20230428112447015](毕设 捏人 bs+动作.assets/image-20230428112447015.png)
+
+感觉是这个：
+
+![image-20230428112434076](毕设 捏人 bs+动作.assets/image-20230428112434076.png)
+
+#### 系统图
+
+```mermaid
+graph TD;
+	t(文本,情感标签等多模态数据)-->|输入|c[CaMN网络];
+	语音(语音)-->|输入|c[CaMN网络];
+	c-->|输出|hand(bvh格式的手势动作);
+	hand-->|转化为适配于Unity的fbx格式|fbx(fbx格式的手势动作);
+	
+	语音(语音)-->|输入|yyqd[语音驱动嘴型];
+	yyqd[语音驱动嘴型]-->|输出|嘴型(嘴型);
+	
+	语音(语音)-->|输入|自定义形象在不同语音环境下做出不同手势动作;
+	嘴型-->|驱动Unity|数字人面部bs;
+	fbx-->|驱动Unity|数字人身体骨骼;
+	
+	用户(用户)-->|控制UnityUI|数字人面部bs
+	用户(用户)-->|控制UnityUI|数字人面部骨骼
+	数字人面部骨骼-->|组成|数字人面部
+	数字人面部bs-->|组成|数字人面部
+	
+	数字人面部-->|输出|捏脸结果+口型变化
+	数字人面部-->|眉毛跟随面部变化|捏脸结果+口型变化
+	用户(用户)-->|控制UnityUI|数字人身体bs
+	用户(用户)-->|控制UnityUI|数字人身体骨骼
+	数字人身体bs-->|组成|数字人身体
+	数字人身体骨骼-->|组成|数字人身体
+	
+	数字人身体-->|服装/头发跟随人体同步变化|捏体型结果+手势动作
+	数字人身体-->|输出|捏体型结果+手势动作
+	
+	捏脸结果+口型变化-->自定义形象在不同语音环境下做出不同手势动作
+	捏体型结果+手势动作-->自定义形象在不同语音环境下做出不同手势动作
+```
+
+
+
+#### 一些bs
+
+
+
+![image-20230414205608843](毕设 捏人 bs+动作.assets/image-20230414205608843.png)
+
+![image-20230414205719624](毕设 捏人 bs+动作.assets/image-20230414205719624.png)
+
+![image-20230414205753227](毕设 捏人 bs+动作.assets/image-20230414205753227.png)
+
+![image-20230414205835369](毕设 捏人 bs+动作.assets/image-20230414205835369.png)
+
+![image-20230414205847455](毕设 捏人 bs+动作.assets/image-20230414205847455.png)
+
+![image-20230414205925019](毕设 捏人 bs+动作.assets/image-20230414205925019.png)
+
+![image-20230414205941159](毕设 捏人 bs+动作.assets/image-20230414205941159.png)
+
+
+
+![image-20230414205957694](毕设 捏人 bs+动作.assets/image-20230414205957694.png)
+
+![image-20230414210021447](毕设 捏人 bs+动作.assets/image-20230414210021447.png)
+
+![image-20230414210044599](毕设 捏人 bs+动作.assets/image-20230414210044599.png)
+
+![image-20230414210132044](毕设 捏人 bs+动作.assets/image-20230414210132044.png)
+
+![image-20230414210158391](毕设 捏人 bs+动作.assets/image-20230414210158391.png)
+
+![image-20230414210219772](毕设 捏人 bs+动作.assets/image-20230414210219772.png)
+
+
+
+eye
+
+![image-20230414210341085](毕设 捏人 bs+动作.assets/image-20230414210341085.png)
+
+![image-20230414210419830](毕设 捏人 bs+动作.assets/image-20230414210419830.png)
+
+![image-20230414210438423](毕设 捏人 bs+动作.assets/image-20230414210438423.png)
+
+
+
+nose
+
+![image-20230414210510623](毕设 捏人 bs+动作.assets/image-20230414210510623.png)
+
+
+
+mouth
+
+![image-20230414210605535](毕设 捏人 bs+动作.assets/image-20230414210605535.png)
+
+![image-20230414210711983](毕设 捏人 bs+动作.assets/image-20230414210711983.png)
+
+
+
+ear
+
+![image-20230414210751307](毕设 捏人 bs+动作.assets/image-20230414210751307.png)
+
+
+
+
+
+![image-20230414205330415](毕设 捏人 bs+动作.assets/image-20230414205330415.png)
+
+#### 还要补充的
+
+
+
+还要补充/做的把这个系统集合起来
+
+ **√**已经将捏人和动作系统/多模态驱动动作 除了UI
+
+**√** 如自定义体型/人脸后，去做那个说话的，但这个意味着你人嘴的bs必须也有。。可能遇到的问题：获取的顺序不同，需要重新排序（已排序）
+
+√动作系统上说话
+
+√基于骨骼动脸
+
+√ 加动画插值原理
+
+√ 绪论争取写到三页!引用一些论文去写背景等等 √ 三页了 未引用
+
+
+
+**0518-PPT里面的展示视频最好切换语音的时候脚不会浮动**
+
+UI好看点 
+
+**输入自己定义的语音来驱动**
+
+blendshape如果用很多 会有mesh的错误 解决
+
+加bs插值原理 
+
+自己做bs
+
+bs的论文那边可以自己列表显示多少个bs
+
+bs处放UI
+
+bs后面弄一个有 表情有体型有人脸建模的人
+
+slider右边可以放数字 让你输入，或者简单点 显示一个当前数字
+
+可以加scale的初始值是1  而的position初始值是0
+
+网络模块的输出？不知道需要么
+
+我们使用L1损失来衡量生成的手势动作与源手势动作之间的空间差异程度?是啥
+
+E？
+
+可加上bvh转为unity可识别的fbx原理
+
+可以加代码结构 uml图 或者时序图之类的 now CAMN加了一个 可以在综合系统里面加unity的
+
+
+
+手势上还有很多问题，看起来手还是怪怪的
+
+论文文字斟酌，画图、加公式什么的
+
+![image-20230415113242823](毕设 捏人 bs+动作.assets/image-20230415113242823.png)
+
+##### 一些代码时序等
+
+,camn.py
+
+
+
+#### 换数字人人步骤
+
+从daz中
+
+![image-20230423133049057](毕设 捏人 bs+动作.assets/image-20230423133049057.png)
+
+语音驱动手势要做的：
+
+![image-20230415165218333](毕设 捏人 bs+动作.assets/image-20230415165218333.png)
+
+
+
+![image-20230415171741813](毕设 捏人 bs+动作.assets/image-20230415171741813.png)
+
+
+
+![image-20230423130302124](毕设 捏人 bs+动作.assets/image-20230423130302124.png)
+
+
+
+
+
+
+
+该技术将面部的语义模型定义为一个简单的线性形式，可 用公式（２．１）对其进行表述［３８］：
+式中，ｊＥ；表示任意面部表情，五。表示自然表情（ｎｅｕｔｒａｌｅｘｐｒｅｓｓｉｏｎ），五，？表示表情 基（Ｂｌｅｎｄｓｈａｐｅｓ），ｘ，＋是表情基的权重，表示表情基的数目，表示给定人脸模型的顶点数
+
+Blendshapes是一种用于数字人物建模和面部动画的技术，它基于一系列预定义的面部表情，每个表情由一组顶点的位移量来表示。通过对这些表情进行线性组合，可以生成几乎无限数量的面部表情，使得面部动画更加真实、自然。
+
+Blendshape的计算公式可以表示为：
+
+ $$ jE = \sum_{i=1}^{n} w_i \cdot F_i + F_{neutral} $$
+
+其中，$jE$ 表示任意面部表情，$F_i$ 表示第 $i$ 个表情基（Blendshape），$F_{neutral}$ 表示自然表情（neutral expression），$w_i$ 表示第 $i$ 个表情基的权重，$n$ 表示表情基的数量。该公式将每个表情基与其相应的权重相乘，然后将结果相加，得到最终的面部表情。
+
+
+
+### 论文参考：
+
+捏脸 https://zhuanlan.zhihu.com/p/466851975
+
+IK https://www.bearchild.top/2021/11/27/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%8A%A8%E7%94%BB/%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86/
+
+
+
+白皮书 https://wk.askci.com/details/cc64d7ee01794e95a9782079daa99259/
+
+（写了）骨骼和bs：https://zhuanlan.zhihu.com/p/78377681  这篇参考论文是：http://graphics.cs.uh.edu/ble/papers/2012sa-ssdr/
+
+
+
+动画插值：https://zhuanlan.zhihu.com/p/338858689
+
+https://blog.csdn.net/seizeF/article/details/96368503
+
+
+
+An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling
+
+对于大多数深度学习从业者来说，序列建模等同于循环网络。然而，最近的结果表明，卷积架构在音频合成和机器翻译等任务上的表现可以超过循环网络。给定一个新的序列建模任务或数据集，应该使用哪种架构?对用于序列建模的通用卷积和循环架构进行了系统评估。在广泛的标准任务中对模型进行评估，这些任务通常用于对递归网络进行基准测试。结果表明，一个简单的卷积架构在各种任务和数据集上的表现优于典型的递归网络(如lstm)，同时显示出更长的有效记忆。结论是，序列建模和循环网络之间的共同关联应该重新考虑，卷积网络应该被视为序列建模任务的一个自然起点。为了协助相关工作，我们已在此http URL提供了代码。
+
+
+
+跳过连接
+
+Deep residual learning for image recognition.
+
+更深的神经网络更难训练。本文提出一种残差学习框架，以简化网络的训练，这些网络比以前使用的网络要深得多。我们明确地根据层的输入将层重新表述为学习残差函数，而不是学习未引用的函数。提供了全面的经验证据，表明这些残差网络更容易优化，并可以从大幅增加的深度中获得精度。在ImageNet数据集上，我们评估了深度高达152层的残差网络——比VGG网络[40]深8倍，但仍然具有更低的复杂度。这些残差网络的集成在ImageNet测试集上取得了3.57%的误差。该结果在ILSVRC 2015分类任务中获得第一名。本文还对具有100层和1000层的CIFAR-10进行了分析。表示的深度对许多视觉识别任务至关重要。仅仅由于极其深度的表示，在COCO目标检测数据集上获得了28%的相对改进
+
+
+
+
+
+我们在⼀个单独的级联结构中实现身体和⼿部解
+
+码器，这是基于[39]的结论，即身体姿态可⽤于估计⼿势姿态
+
+[Body2Hands: Learning to Infer 3D Hands from Conversational Gesture Body Dynamics](http://www.xueshufan.com/publication/3184385152)
+
+
+
+使用工具：
+
+E:\mysoftware2\jietuSnipaste
+
+截图 F1+R就是上一次截图的位置啦
+
+拼图：
+
+https://www.photojoiner.com/editor/collage-editor
+
+生成latex
+
+[公式识别 (simpletex.cn)](https://www.simpletex.cn/ai/latex_ocr)
+
+转word[在线LaTeX公式编辑器-编辑器 (latexlive.com)](https://www.latexlive.com/)
+
+
+
+
+
+
+
+降重：
+
+线性蒙皮即LBS，它是由一系列骨骼驱动，特定骨骼对特定附近顶点分配一个权重。而顶点和骨骼的关系，在三维建模软件中，我们会通过对骨骼刷权重来获取，即对应这个原理反过来操作：我们选中一根骨骼，对这根骨骼运动会带动运动的顶点刷上不同的权重，代表骨骼运动对这个顶点的影响轻重。将最终生成的顶点权重图，将其与骨骼一起计算出最终顶点位置。具体来说，我们可以利用骨头当前位置相对于基准位置的变换矩阵和顶点相对于骨骼的权值来计算受骨骼影响下顶点的位置。
+
+具体公式如下：
+
+![img](毕设 捏人 bs+动作.assets/wps1.jpg) 
+
+ 
+
+其中，
+
+假设Wij说第一个j a骨为第I个顶点的权值，Pi说第I个顶点在静止位置的坐标，| | B为骨的个数，Rjt和Tjt分别是第j a骨在第一个ta位置下的旋转矩阵和位移矩阵，那么在第一个t个姿态下，顶点的位置Vit我说可以用下面的公式:
+
+
+
+![image-20230418135758809](毕设 捏人 bs+动作.assets/image-20230418135758809.png)
+
+
+
+假设Wij说第一个j a骨为第I个顶点的权值，Pi说第I个顶点在静止位置的坐标，| | B为骨的个数，Rjt和Tjt分别是第j a骨在第一个ta位置下的旋转矩阵和位移矩阵，那么在第一个t个姿态下，顶点的位置Vit我说可以用下面的公式:
+
+
+
+其中，顶点i的最终位置为$$L_{i}$$ , w_{i j}是第j个骨骼对于第i个顶点的权重，bonesN是骨骼个数，L0i是i这个顶点初始位置的坐标，
+
+$$L_{i}=\sum_{j=1}^{|bonesN|} w_{i j}\left(R_{j} L0_{i}+T_{j}\right)$$
+
+
+
+
+
+$$L_{i}^{t}=\sum_{j=1}^{|B|} w_{i j}\left(R_{j}^{t} p_{i}+T_{j}^{t}\right)$$
+
+
+
+$$\mathcal{L}_{L_{1}}(G)=\mathbb{E}_{x, s \sim p_{\text {data }}(x, s), z \sim p_{z}(z)}\left[\|y-G(x, s, z)\|_{1}\right]$$
+
+
+
+$$\ell_{\mathrm{Gesture~Rec.}}=\mathbb{E}\left[\left|\mathbf{v}^{B}-\mathbf{\hat{v}}^{B}\right|\right|_{1}\right]+\alpha\mathbb{E}\left[\left|\mathbf{v}^{H}-\mathbf{\hat{v}}^{H}\right|\right|_{1}\right]$$
+
+![img](毕设 捏人 bs+动作.assets/wps2.jpg)
+
+$$\ell_{\mathrm{Adv.}}=-\mathbb E[\log(Dis(\hat{\mathbf v}^B;\hat{\mathbf v}^H))],$$
+
+
+
+$$y=f(t)=a t^{3}+b t^{2}+c t+d$$
+
+
+
+
+$$
+
+$$
+
+$$
+\left[\begin{array}{l}
+a \\
+b \\
+c \\
+d
+\end{array}\right]=\left[\begin{array}{cccc}
+t_{0}^{3} & t_{0}^{2} & t_{0} & 1 \\
+t_{1}^{3} & t_{1}^{2} & t_{1} & 1 \\
+3 t_{0}^{2} & 2 t_{0} & 1 & 0 \\
+3 t_{1}^{2} & 2 t_{1} & 1 & 0
+\end{array}\right]^{-1}\left[\begin{array}{c}
+y_{0} \\
+y_{1} \\
+out T_{0} \\
+int T_{1}
+\end{array}\right]
+$$
+
+
+
+## 修改阶段
+
+#### 导师评语
+
+全文表述要精炼、专业（eg赋予）
+
+如果不提及，就不用写。（egSSDR）
+
+有空问：是要把我们全删了吗
+
+![image-20230501171630904](毕设 捏人 bs+动作.assets/image-20230501171630904.png)
+
+
+
+
+
+帮我改一下这句话，要放在论文中，想说的更专业，没有语病
+
+#### 查重
+
+##### paperfree
+
+17.17%
+
+ 一部分：
+
+![image-20230503162536833](毕设 捏人 bs+动作.assets/image-20230503162536833.png)
+
+![image-20230504004609562](毕设 捏人 bs+动作.assets/image-20230504004609562.png)
+
+##### papertime
+
+5.02%
+
+[PaperFree_全文检测报告](file:///E:/本科/vcg实验室/毕设相关/查重/paperfree/《三维人体建模与多模态信号驱动手势动作生成》PaperFree文档检测报告/论文检测报告.html)
+
+/
+
+http://www.paperfree.cn/report/full/2023050316/16845938252453167/index.htm
+
+
+
+
+
+http://www.papertime.cn/report/2023050316/5720222561655/index.htm
+
+
+
+
+
+##### paperpass
+
+https://www.paperpass.com/panel/report?page=1
+
+
+
+https://view.paperpass.com/report/6453a9eb2dd4ckdbw/
+
+
+
+##### paperyy
+
+[查重报告_PaperYY论文查重](https://www.paperyy.com/member_new/thesis/list.aspx)
+
+
+
+##### 字词修订
+
+https://xiezuocat.com/pro/8342677385849511936
+
+
+
+#### chatgpt语录
+
+帮我改一下这句话的说法，要通顺，没有语病：
+
+帮我改一下下面这段话的说法，要通顺，没有语病，词语可以都改改，改的看不出一样：
+
+[Blendshape也称为形状融合，](http://www.paperfree.cn/report/full/2023050316/16845938252453167/htmls/sentence_detail/19.htm)
+
+
+
+#### 要改的
+
+* 更新奇数页章节 /
+
+* 更新域更新目录 /
+
+* 更新英文目录（字体改一下 有时会变的+**页码手动改**）/
+* 目录字体 特别是中文三级目录的英文字体 /
+* 图的配字要和图在一块 且上下空一行 /
+* **厦门大学本科学位论文诚信承诺书** 那个签名和日期可能要写 /
+* 
+
+
+
+##### PPT要改的
+
+最后答辩前 还是要看懂自己写的 想想答辩会问啥
+
+背下来
+
+最好把那个视频改为也可以自定义表情/人脸的
+
+##### 提交材料要改的
+
+厦门大学本科学位论文诚信承诺书的签名，**电子签可以删了？**但是记得后面**手签**上去
+
+**答辩记录**！！！可能得打印**文件里面的**
+
+
+
+## END
+
+
+
+
+
+
+
+
+
+
+
+按照原则： 1.题目的第一个单词要大写； 2.冠词都不需要大写； 3.字母多于三个(不含三个)的介词、连词首字母要大写； 4.名词、动词、形容词、副词、代词、感叹词首字母大写； 5.大写所有英语中要求大写的单词。如月份、人名、地名等等。 这几条原则的优先性是递减的，也就是说，如果几条原则之间出现了矛盾的情况，应优先适用前面的原则。帮我改一下以下目录：4.3 Implementation and optimization of digital human action module 	31 4.3.1 Implementation of digital human action module	31 4.3.1 Optimization of digital human action module 	31 4.3 Experimental Results and Analysis 	33 4.2.2 Application of multimodal driven gesture action generation module in Unity 	33 4.2.3 Optimization effect of digital human action module	33 Chapter 5 Digital Human System Synthesis and Testing	35 5.1 Introduction 	35 5.2 Design and implementation of digital Human Integrated system	35 5.2.1 Human body modeling combined with multimodal driven gesture generation	35 5.2.2 Other parts 	35 5.2 Experimental Results and Analysis 	36 Chapter 6 Conclusions and Future works	39 6.1 Conclusions	39 6.2 Future works	39 References	41 Acknowledgements	45
+
+
+
+三维人体建模与多模态信号驱动手势动作生成
+
+普通-横向-导师指定
+
+
+
+0508 2218 看到第六页
+
