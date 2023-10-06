@@ -203,6 +203,8 @@ inline vec3 cross(const vec3& u, const vec3& v) {
 }
 ```
 
+------
+
 
 
 ### 3.封装一个输出颜色函数
@@ -350,7 +352,7 @@ int main(){
 
 	//Render
 	outfile << "P3\n" << image_width << " " << image_height << "\n255\n"; //根据格式,输出nx行和ny列
-	for (int j = image_height - 1; j >= 0; j--)
+	for (int j = image_height - 1; j >= 0; j--) //这里的i和j循环的逻辑中,原点是左下角,而输入进ppm文件的次序是从左上角开始,因此j是从image_height开始的
 	{
 		std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;  //添加一个进度条
 		for (int i = 0; i < image_width; i++)
@@ -366,7 +368,7 @@ int main(){
 }
 ```
 
-ray_color(ray)函数根据y值将蓝色和白色做了**线性插值的混合**：
+`ray_color(ray)`函数根据y值将蓝色和白色做了**线性插值的混合**：
 
 - 我们这里把射线做归一化, 以保证y的取值范围(-1.0<y<1.0)。此时用y轴做渐变效果就比较理想，但同时我们也需要将[-1.0，1.0]的范围变到[0.0，1.0]，对应`float t = 0.5*(unit_direction.y() + 1.0);`一句（**这是一个常用的小技巧**）
 
@@ -610,7 +612,7 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
 	//Find the nearest root that lies in the acceptable range.
 	auto root = (-half_b - sqrtd) / a; //root求解出来的是最近的hit point对应的t值
 	if (root<t_min || root>t_max) {
-		root = (-half_b + sqrtd) / a;
+		root = (-half_b + sqrtd) / a;  //小的解不符合要求,选择大的解再试试
 		if (root<t_min || root>t_max) return false;
 	}
 	rec.t = root;
@@ -672,7 +674,7 @@ else {
 }
 ```
 
-采取哪种策略, 关键在于想把这部分放在着色阶段还是几何求交的阶段。在本项目中，材质数量要多于几何体的种类数量，所以我们将在几何部分先判别射入面是内侧还是外侧，也就是第（2）种策略【注：直接写就行，正常是要求这个交点是在外还是在内的，方便后续着色】。
+采取哪种策略, 关键在于想把这部分放在着色阶段还是几何求交的阶段。在本项目中，材质数量要多于几何体的种类数量，所以我们将在几何部分先判别射入面是内侧还是外侧，也就是第（2）种策略【注：直接写第（2）种策略就行，正常是要求这个交点是在外还是在内的，方便后续着色】。
 
 在`hit_record`类中引入front_face变量，需要修改的部分如下：
 
@@ -684,7 +686,7 @@ struct hit_record
 	vec3 normal;
 	bool front_face; //判断是哪一面,如果是物体内部的则这一项是false
 
-	inline void set_face_normal(const ray& r, const vec3& outward_normal) //新增函数：
+	inline void set_face_normal(const ray& r, const vec3& outward_normal) //新增函数：从里面打出的要反转法线
 	{
 		front_face = dot(r.direction(), outward_normal) < 0;
 		normal = front_face ? outward_normal : -outward_normal;
@@ -773,7 +775,7 @@ bool hittable_list::hit(const ray& r, double t_min, double t_max, hit_record& re
   shared_ptr<sphere> sphere_ptr = make_shared<sphere>(vec3(0,0,0), 1.0);
   ```
 
-`make_shared<thing>`(thing_constructor_params ...)为指定的类型分配一段内存, 使用你指定的构造函数与参数来创建这个类, 并返回一个智能指针`shared_ptr<thing>`
+`make_shared<thing>(thing_constructor_params ...)`为指定的类型分配一段内存, 使用你指定的构造函数与参数来创建这个类, 并返回一个智能指针`shared_ptr<thing>`
 
 使用C++的auto类型关键字, 可以自动推断`make_shared<type>`返回的智能指针类型, 于是我们可以把上面的代码简化为:
 
@@ -1372,7 +1374,7 @@ color ray_color(const ray& r, const hittable& world, int depth) {
 
 	if (world.hit(r, 0.0001, infinity, rec)) {
 		vec3 target = rec.p + rec.normal + random_unit_vector();
-		return 0.5 * ray_color(ray(rec.p, target - rec.p),world,depth-1);
+		return 0.5 * ray_color(ray(rec.p, target - rec.p),world,depth-1);  //生成的光线的方向为target - rec.p，不需要归一化，
 	}
 
 	vec3 unit_direction = unit_vector(r.direction());
@@ -1391,6 +1393,8 @@ color ray_color(const ray& r, const hittable& world, int depth) {
 2.大球和小球都变亮了
 
 这些变化都是**由散射光线的单位规整化引起的**，现在更少的光线会朝着法线方向散射。对于漫发射的物体来说, 他们会变得更亮。因为更多光线朝着摄像机反射。对于阴影部分来说, 更少的光线朝上反射, 所以小球下方的大球区域会变得更加明亮。（**这里如果理解的不是很透彻的话也不用担心，因为我们后面就会用这个正常的lambert表面模型来做。**）
+
+==**todo：发现计算得到的反射光线并没有进行归一化，这样得到的相交之后的t值计算会不会不准确，这里是否存在问题？**==（应该是没什么问题的，虽然由于方向没有归一化会导致生成的解`t`不同，但在计算交点的时候本身也是用`o+td`算的，所以应该不影响，实测归一化前后也确实看不出差别。）
 
 ------
 
@@ -1803,7 +1807,7 @@ auto material_right = make_shared<metal>(vec3(0.8, 0.6, 0.2),1.0);  //对应右�
 
 
 
-## Chapter 10：绝缘体材质
+## Chapter 10：绝缘体材质（折射相关）
 
 透明的材料, 例如水, 玻璃, 和钻石都是绝缘体。当光线击中这类材料时, **一条光线会分成两条, 一条发生反射, 一条发生折射。**我们会采取这样的策略: 每次光线与物体相交时, **要么反射要么折射**, 一次只发生一种情况,随机选取。反正最后采样次数多, 会给这些结果取个平均值。
 
@@ -1815,9 +1819,9 @@ auto material_right = make_shared<metal>(vec3(0.8, 0.6, 0.2),1.0);  //对应右�
 
 $η⋅sinθ=η^′⋅sinθ^′$
 
-四个变量的解释如下:
+四个变量的解释如下（看左图）:
 
-![img](https://raytracing.github.io/images/fig-1.13-refraction.jpg)
+![image-20230919145938035](Learn%20Ray%20Tracing%20In%20One%20Weekend%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0.assets/image-20230919145938035.png)
 
 $ \theta$与 $\theta'$是入射光线与折射光线距离法向的夹角, $\eta$ 与 $\eta'$(读作eta和eta prime)是介质的折射率(规定空气为1.0, 玻璃为1.3-1.7,钻石为2.4);
 
@@ -1897,7 +1901,7 @@ auto material_right = make_shared<metal>(vec3(0.8, 0.6, 0.2), 1.0);
 
 ### 3.解决全内反射问题
 
-注意到如果$\frac{\eta}{\eta^′}$比较大的话，那么$sinθ^′=sin\theta\frac{\eta}{\eta^′}$有可能会出现大于1的情况（当光线从高折射律介质射入低折射率介质时, 比如从钻石类的材质射入到空气中，此时上述的Snell方程可能没有实解（因为看前面推导的公式里根号下面可能出现<0的情况）），此时就无法求解出正确的折射光线了。通过上面的公式发现本质上无解的情况应该是$sin\theta_r>1$，也就是$sin\theta\frac{\eta}{\eta^′}>1$
+注意到如果$\frac{\eta}{\eta^′}$比较大的话，那么$sinθ^′=sin\theta\ ×  \frac{\eta}{\eta^′}$有可能会出现大于1的情况（当光线从高折射律介质射入低折射率介质时, 比如从钻石类的材质射入到空气中，此时上述的Snell方程可能没有实解（因为看前面推导的公式里根号下面可能出现<0的情况）），此时就无法求解出正确的折射光线了。通过上面的公式发现本质上无解的情况应该是$sin\theta_r>1$，也就是$sin\theta × \frac{\eta}{\eta^′}>1$
 
 **解决方案：当求解出光线无法完成折射的任务时，使其反射**：
 
@@ -1998,7 +2002,7 @@ auto material_right  = make_shared<metal>(color(0.8, 0.6, 0.2), 0.0);
 
 ### 4.Schlick近似方法
 
-现实世界中的玻璃, **发生反射的概率会随着入射角而改变**——从一个很狭窄的角度去看玻璃窗, 它会变成一面镜子。如果要完全精确地描述这件事公式是十分痛苦的（参考学习链接：https://zhuanlan.zhihu.com/p/372110183），不过有一个数学上近似的等式, 它是由Christophe Schlick提出的。Schlick 反射率函数如下：
+现实世界中的玻璃, **发生反射的概率会随着入射角而改变**——从一个很狭窄的角度去看玻璃窗, 它会变成一面镜子。如果要完全精确地描述这件事，对应的公式是十分痛苦的（参考学习链接：https://zhuanlan.zhihu.com/p/372110183），不过有一个数学上近似的等式, 它是由Christophe Schlick提出的。Schlick 反射率函数如下：
 $$
 F_{\text {Schlick }}\left(n, v, F_{0}\right)=F_{0}+\left(1-F_{0}\right)(1-(n \cdot v))^{5} 
 $$
@@ -2062,7 +2066,7 @@ world.add(make_shared<sphere>(point3( 1.0,    0.0, -1.0),   0.5, material_right)
 
 由于图像长宽很可能不一样，因此应该有一个水平方向的FOV和一个竖直方向的FOV，一般来说采用竖直的。作者还会在构造函数当中把传入的FOV的角度改成弧度。
 
-![img](https://raytracing.github.io/images/fig-1.14-cam-view-geom.jpg)
+<img src="Learn%20Ray%20Tracing%20In%20One%20Weekend%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0.assets/image-20230919152133676.png" alt="image-20230919152133676" style="zoom: 33%;" />
 
 假设我们从上至下的视野范围角度为θ，相机看向z=-1平面（设定如此，也可以改），那么容易看出：
 
@@ -2488,3 +2492,18 @@ g++ main.cpp -o ray_tracing
 ![image-20230420164040838](Learn%20Ray%20Tracing%20In%20One%20Weekend%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0.assets/image-20230420164040838.png)
 
 ![image-20230420164132105](Learn%20Ray%20Tracing%20In%20One%20Weekend%20%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0.assets/image-20230420164132105.png)
+
+
+
+### 如何将输出重定向到文件中?
+
+参考链接:[Linux中记录终端（Terminal）输出到文本文件四种方法_linux 如何把终端打印信息输出到文件里-CSDN博客](https://blog.csdn.net/qq_44681788/article/details/126239092)
+
+类比前面的输出C++程序的包含cerr输出的结果，重定向到目标文件中，可以使用如下指令：
+```shell
+nohup ./ray_tracing 2>&1 | tee log.txt
+```
+
+其中nohup的意思是退出后台也会执行.
+
+捕获进程的指令:`ps -ef | grep ray_tracing`,详见[如何让程序在linux服务器下一直运行（关闭远程连接后仍然继续运行）_51CTO博客_远程关闭服务器Linux](https://blog.51cto.com/u_15088375/3247580)
